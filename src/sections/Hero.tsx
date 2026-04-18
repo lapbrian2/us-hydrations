@@ -23,10 +23,8 @@ export function Hero() {
           className="relative w-full"
           style={{
             aspectRatio: "21 / 9",
-            /* Cap at 540px so a 900×504 source never upscales more than ~2×.
-               (900px source rendered into 21:9 box ≈ 386px tall.) */
-            maxHeight: "min(540px, 62vh)",
-            minHeight: "min(380px, 56vh)",
+            maxHeight: "62vh",
+            minHeight: "min(420px, 60vh)",
           }}
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}

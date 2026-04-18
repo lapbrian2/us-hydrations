@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { BlurText } from "../components/BlurText";
 import { SectionHeader } from "../components/SectionHeader";
-import { story } from "../lib/content";
+import { story, ceoQuote } from "../lib/content";
 import { useInView } from "../lib/hooks";
 
 const storyImage =
@@ -112,6 +112,45 @@ export function Story() {
             ))}
           </div>
         </div>
+
+        {/* CEO pull-quote — editorial break between timeline and section close */}
+        <motion.figure
+          className="mt-24 lg:mt-36 max-w-[1400px] mx-auto text-center relative"
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
+          transition={{ delay: 1.4, duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+        >
+          <div
+            className="font-script text-aqua -rotate-1 mb-6"
+            style={{
+              fontSize: "clamp(32px, 4vw, 64px)",
+              lineHeight: 1,
+              letterSpacing: "-0.015em",
+            }}
+          >
+            today
+          </div>
+          <blockquote
+            className="font-serif-italic text-cream leading-[1.1]"
+            style={{
+              fontSize: "clamp(28px, 4.2vw, 68px)",
+              letterSpacing: "-0.015em",
+            }}
+          >
+            <span className="text-aqua mr-2" aria-hidden>“</span>
+            <BlurText stagger={0.025} duration={0.6}>
+              {ceoQuote.text}
+            </BlurText>
+            <span className="text-aqua ml-1" aria-hidden>”</span>
+          </blockquote>
+          <figcaption
+            className="mt-8 font-mono uppercase text-cream/60 flex items-center justify-center gap-4"
+            style={{ fontSize: 12, letterSpacing: "0.18em" }}
+          >
+            <span className="w-10 h-px bg-aqua" aria-hidden />
+            {ceoQuote.attribution}
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );

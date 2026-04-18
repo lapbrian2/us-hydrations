@@ -80,6 +80,7 @@ export function Hero() {
           {/* TAKE TOUR pill, bottom-right */}
           <motion.a
             href="#capabilities"
+            data-magnetic
             className="absolute z-[6] liquid-glass rounded-full inline-flex items-center gap-3 px-5 py-3 font-mono uppercase text-cream hover:text-aqua transition"
             style={{
               fontSize: 11,

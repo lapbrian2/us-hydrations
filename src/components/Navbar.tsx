@@ -89,6 +89,7 @@ export function Navbar() {
         {/* CTA */}
         <a
           href="#contact"
+          data-magnetic
           className={`hidden lg:inline-flex items-center gap-2 font-display uppercase tracking-wider btn-liquid text-cream ${
             scrolled ? "" : "liquid-glass-strong rounded-full"
           }`}

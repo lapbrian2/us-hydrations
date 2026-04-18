@@ -23,8 +23,10 @@ export function Hero() {
           className="relative w-full"
           style={{
             aspectRatio: "21 / 9",
-            maxHeight: "62vh",
-            minHeight: "min(420px, 60vh)",
+            /* Cap at 540px so a 900×504 source never upscales more than ~2×.
+               (900px source rendered into 21:9 box ≈ 386px tall.) */
+            maxHeight: "min(540px, 62vh)",
+            minHeight: "min(380px, 56vh)",
           }}
           initial={{ opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -36,6 +38,8 @@ export function Hero() {
             loop
             muted
             playsInline
+            preload="metadata"
+            poster="https://www.ushydrations.com/wp-content/uploads/2019/04/2-15-19-USH-Addl_DSC1720.jpg"
             src={brand.assets.heroVideo}
             aria-hidden
           />

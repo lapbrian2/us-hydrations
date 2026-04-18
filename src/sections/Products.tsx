@@ -83,8 +83,8 @@ export function Products() {
             >
               {/* Square image */}
               <div
-                className="relative rounded-[20px] overflow-hidden"
-                style={{ paddingBottom: "108%" }}
+                className="relative rounded-[20px] overflow-hidden w-full"
+                style={{ aspectRatio: "1 / 1.08" }}
               >
                 <ParallaxLayer intensity={30} scale={1.1} className="absolute inset-0">
                   <div

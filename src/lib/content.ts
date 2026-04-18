@@ -255,7 +255,7 @@ export const leaders: Leader[] = [
     title: "Senior Vice President",
     bio: "Oversees finance and accounting. 30+ years in banking, with leadership roles across strategic planning, budgeting, forecasting, and managing a $50M investment portfolio.",
     headshot:
-      "https://www.ushydrations.com/wp-content/uploads/2021/12/Michael-Sowinkski.jpg",
+      "https://www.ushydrations.com/wp-content/uploads/2021/12/Michael-Sowinksi.jpg",
     email: "MSowinski@www.ushydrations.com",
   },
   {

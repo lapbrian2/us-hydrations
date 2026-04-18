@@ -214,6 +214,20 @@ h3 {
   background-color: rgba(14, 50, 68, 0.05) !important;
 }
 
+/* mix-blend-mode exclusion/difference subtract from bg — on paper they
+   invert aqua into warm-pink. On light sections, render script accents
+   without blending, in a darker aqua for legibility. */
+.section-light .mix-exclusion {
+  mix-blend-mode: normal !important;
+  color: var(--color-aqua-dark) !important;
+}
+
+/* Script accents explicitly shift to aqua-dark on light (they use font-script
+   which may not be paired with mix-exclusion everywhere) */
+.section-light .font-script {
+  color: var(--color-aqua-dark) !important;
+}
+
 .font-serif-italic {
   font-family: var(--font-serif);
   font-style: italic;

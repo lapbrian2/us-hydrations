@@ -72,12 +72,12 @@ export function SectionNav() {
               className={`relative block rounded-full transition-all duration-500 ${
                 isActive
                   ? "w-3 h-3 bg-aqua"
-                  : "w-[6px] h-[6px] bg-cream/30 group-hover:bg-cream/60"
+                  : "w-[7px] h-[7px] border border-cream/50 group-hover:border-aqua/80"
               }`}
               style={
                 isActive
                   ? { boxShadow: "0 0 12px rgba(124,245,216,0.6)" }
-                  : undefined
+                  : { mixBlendMode: "difference" }
               }
             />
           </a>

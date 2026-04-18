@@ -116,35 +116,39 @@ export function Products() {
                   </div>
                 </div>
 
-                {/* Spec overlay bar */}
-                <div
-                  className="absolute left-4 right-4 bottom-4 liquid-glass rounded-[16px] flex items-center justify-between z-[3]"
-                  style={{ padding: "12px 16px" }}
-                >
-                  <div className="flex flex-col min-w-0">
-                    <span
-                      className="font-mono uppercase text-cream/60 truncate"
-                      style={{ fontSize: 9, letterSpacing: "0.18em" }}
-                    >
-                      Format
-                    </span>
-                    <span
-                      className="font-display text-cream truncate"
-                      style={{ fontSize: 15, letterSpacing: "-0.005em" }}
-                    >
-                      {p.format}
-                    </span>
-                  </div>
-                  <button
-                    aria-label={`View ${p.label} spec`}
-                    className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
-                    style={{
-                      background: "linear-gradient(to bottom right, #7CF5D8, #1FA08A)",
-                      boxShadow: "0 8px 24px rgba(124,245,216,0.35)",
-                    }}
+                {/* Spec overlay bar — outer absolute wrapper isolates positioning
+                     from .liquid-glass (whose `position: relative` would otherwise
+                     override the absolute positioning) */}
+                <div className="absolute left-4 right-4 bottom-4 z-[3]">
+                  <div
+                    className="liquid-glass rounded-[16px] flex items-center justify-between"
+                    style={{ padding: "12px 16px" }}
                   >
-                    <ArrowUpRight size={14} strokeWidth={2.8} color="#05131A" />
-                  </button>
+                    <div className="flex flex-col min-w-0">
+                      <span
+                        className="font-mono uppercase text-cream/60 truncate"
+                        style={{ fontSize: 9, letterSpacing: "0.18em" }}
+                      >
+                        Format
+                      </span>
+                      <span
+                        className="font-display text-cream truncate"
+                        style={{ fontSize: 15, letterSpacing: "-0.005em" }}
+                      >
+                        {p.format}
+                      </span>
+                    </div>
+                    <button
+                      aria-label={`View ${p.label} spec`}
+                      className="w-10 h-10 shrink-0 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+                      style={{
+                        background: "linear-gradient(to bottom right, #7CF5D8, #1FA08A)",
+                        boxShadow: "0 8px 24px rgba(124,245,216,0.35)",
+                      }}
+                    >
+                      <ArrowUpRight size={14} strokeWidth={2.8} color="#05131A" />
+                    </button>
+                  </div>
                 </div>
               </div>
 

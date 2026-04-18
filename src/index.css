@@ -1,0 +1,488 @@
+@import "tailwindcss";
+
+/* ============================================================
+   BRAND THEME — hydro-navy + aqua, editorial typography mix.
+   Tailwind 4 CSS-first config. Class utilities like
+   `bg-ink` / `text-cream` / `font-display` auto-generate.
+   ============================================================ */
+@theme {
+  --color-ink: #05131a;
+  --color-panel: #0a1f2b;
+  --color-deep: #0e3244;
+  --color-cream: #eaf4f2;
+  --color-aqua: #7cf5d8;
+  --color-aqua-dark: #1fa08a;
+  --color-steel: #8aa0a8;
+  --color-pewter: #71717a;
+
+  --font-display: "Anton", "Archivo", sans-serif;
+  --font-sans:
+    "Archivo", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-script: "Caveat", cursive;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+
+  --ease-out-expo: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out-cubic: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+html,
+body,
+#root {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.005em;
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+::selection {
+  background: var(--color-aqua);
+  color: var(--color-ink);
+}
+
+.font-serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.mix-exclusion {
+  mix-blend-mode: exclusion;
+}
+
+/* Hide default cursor when custom is active (desktop only) */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button {
+    cursor: none;
+  }
+}
+
+/* ============================================================
+   LIQUID GLASS — subtle frosted surface with gradient hairline.
+   Two variants: base (low blur) and strong (CTAs).
+   Port of Orbis / dark-premium-glass utility.
+   ============================================================ */
+.liquid-glass {
+  background: rgba(255, 255, 255, 0.015);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: none;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.15) 80%,
+    rgba(255, 255, 255, 0.45) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.02);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: none;
+  box-shadow:
+    4px 4px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+.liquid-glass-strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0.2) 80%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ============================================================
+   TEXTURE OVERLAY — fixed grain, layered above everything
+   ============================================================ */
+.texture-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  mix-blend-mode: lighten;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.04  0 0 0 0 0.08  0 0 0 0 0.10  0 0 0 0.25 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* ============================================================
+   CINEMATIC IMAGE TREATMENT — desaturated + vignetted + tinted
+   ============================================================ */
+.img-cinematic {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.72;
+  filter: contrast(1.12) saturate(0.6) brightness(0.78);
+}
+.img-cinematic::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 120% 80% at 50% 50%,
+      transparent 30%,
+      rgba(5, 19, 26, 0.7) 95%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(5, 19, 26, 0.15) 0%,
+      rgba(5, 19, 26, 0.55) 100%
+    );
+  mix-blend-mode: multiply;
+}
+.img-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 245, 216, 0.08) 0%,
+    rgba(5, 19, 26, 0.25) 70%
+  );
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+.img-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/></svg>");
+  opacity: 0.22;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CUSTOM CURSOR — dot + ring + ambient glow
+   ============================================================ */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 60;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition:
+    width 0.3s var(--ease-out-expo),
+    height 0.3s var(--ease-out-expo),
+    opacity 0.3s;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-cream);
+  border-radius: 9999px;
+}
+.cursor-ring {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-cream);
+  border-radius: 9999px;
+  opacity: 0.6;
+}
+body.cursor-hover .cursor-ring {
+  width: 64px;
+  height: 64px;
+  opacity: 1;
+  border-color: var(--color-aqua);
+}
+.ambient-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 560px;
+  height: 560px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(124, 245, 216, 0.12) 0%,
+    rgba(124, 245, 216, 0) 60%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: transform 0.4s var(--ease-out-expo);
+  filter: blur(20px);
+}
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #7cf5d8, rgba(124, 245, 216, 0.4));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  z-index: 55;
+}
+
+/* ============================================================
+   SECTION NUMBER — editorial marker top-left of each section
+   ============================================================ */
+.section-num {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(234, 244, 242, 0.4);
+  text-transform: uppercase;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 4;
+}
+.section-num::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--color-aqua);
+  transform-origin: left;
+  animation: sn-draw 1s var(--ease-in-out-cubic) both;
+}
+@keyframes sn-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================================
+   NAV LINK — char-bob on hover + animated underline
+   ============================================================ */
+.nav-link {
+  position: relative;
+  transition: color 200ms ease;
+}
+.nav-link:hover {
+  color: var(--color-aqua);
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--color-aqua);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ============================================================
+   BUTTON — liquid-fill aqua sweep up
+   ============================================================ */
+.btn-liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-liquid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-aqua);
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease-in-out-cubic);
+  z-index: -1;
+}
+.btn-liquid:hover::before {
+  transform: translateY(0);
+}
+.btn-liquid:hover {
+  color: var(--color-ink) !important;
+}
+.btn-liquid:hover svg {
+  stroke: var(--color-ink) !important;
+}
+
+/* ============================================================
+   CARD — lift, 3D tilt, inner glow on hover
+   ============================================================ */
+.card {
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo);
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px -30px rgba(124, 245, 216, 0.25);
+}
+.card > * {
+  transform-style: preserve-3d;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.card:hover > * {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(124, 245, 216, 0.15),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* ============================================================
+   DOT GRID BG (between sections)
+   ============================================================ */
+.grid-bg {
+  background-color: #05131a;
+  background-image: radial-gradient(
+    rgba(234, 244, 242, 0.06) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
+}
+
+/* ============================================================
+   MARQUEE — infinite horizontal scroll, pauses on hover
+   ============================================================ */
+@keyframes marquee-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 42s linear infinite;
+}
+.marquee-section:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ============================================================
+   BUBBLE — rising aqua orbs behind hero
+   ============================================================ */
+@keyframes rise {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+}
+.bubble {
+  position: absolute;
+  bottom: -20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(124, 245, 216, 0.6);
+  box-shadow: 0 0 12px rgba(124, 245, 216, 0.4);
+  animation: rise linear infinite;
+}
+
+/* ============================================================
+   ACCESSIBILITY — respect reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .bubble,
+  .marquee-track,
+  .ambient-glow {
+    display: none;
+  }
+}

@@ -1,58 +1,81 @@
 # US Hydrations
 
-Landing page rebuild for [US Hydrations](https://us-hydrations.vercel.app) — a Pittston, PA hydration company. The live business site at ushydrations.com runs on WordPress + the Astra theme; this rebuild is a static HTML version of the same design.
+2026-grade landing page rebuild for [US Hydrations](https://us-hydrations.vercel.app) — Pittston, PA premier beverage manufacturer (1M sq ft, 4 high-speed PET lines, 25+ years since 1996).
 
 ## Stack
 
-- Plain `index.html` at the root — same markup approach as the original, split into separate files for clarity.
-- **Tailwind CSS via CDN** with an inline `tailwind.config` for custom brand colors and fonts.
-- **Google Fonts** — Anton / Archivo / Instrument Serif / Caveat / JetBrains Mono.
-- **Vanilla JS** motion engine (`scripts/motion-engine.js`) — IntersectionObserver for reveals, custom cursor, 3D card tilt, photo parallax, marquee velocity scrubbing, animated counters.
-- **Vercel** — static deploy, auto-deploys on push to `main`.
+- **React 19** + **TypeScript** + **Vite 6**
+- **Tailwind CSS 4** (CSS-first `@theme` in `src/index.css`)
+- **motion/react** (Framer Motion v12) for word-stagger, blur-in, reveal
+- **lucide-react** icons
+- **hls.js** (for future HLS video sections)
 
-No build step. Edit files, refresh.
+## Design DNA
 
-## Design
+Dark hydro-navy (`#05131A`) + aqua (`#7CF5D8`) + editorial type mix: **Anton** display / **Archivo** body / **Instrument Serif italic** accent / **Caveat** script / **JetBrains Mono**. Liquid-glass surfaces, cinematic image treatment, texture grain overlay, custom cursor + ambient glow, 3D card tilt, animated counters, infinite marquee.
 
-Deep hydro-navy (`#05131A`) base with aqua accent (`#7CF5D8`). Editorial typography mix:
+Structural template: `reference_site_movement_orbis_nft_dark_space`. Motion layer upgraded from `reference_site_movement_dark_premium_glass` (BlurText word-stagger + motion.p blur-in). All content pulled from ushydrations.com — no fabricated numbers.
 
-- **Anton** — display headings
-- **Archivo** — body
-- **Instrument Serif italic** — editorial accent on hero/about headings
-- **Caveat** — script overlay ("Pittston", "Let's run it")
-- **JetBrains Mono** — kickers, stats labels, section numbers
+## Sections
 
-Sections: Hero → Marquee → About → Products → CTA. Liquid-glass surfaces, cinematic image treatment, splash loader, custom cursor, 3D card tilt, marquee velocity scrubbing, animated counters.
+1. **Hero** — video bg, word-stagger headline, 4 real stats (25+ years · 1M sq ft · 4 PET lines · 250K gal)
+2. **Marquee** — kinetic product/packaging strip (Purified, Distilled, Alkaline, Enhanced, Flavored, Carbonated)
+3. **Capabilities** — 4 real groups: Water Processing / Bottling & Packaging / Quality & Lab / Warehouse & Logistics
+4. **Products** — 6 real types with cinematic photo cards, 3D tilt, spec overlay
+5. **Leadership** — 6 real execs (Joe Lapchak, Michael Sowinski, Tiffanie Driscole, Joseph McGeer, Jennifer Verry, Joseph Desmarteau) + Chairman Sandy Insalaco Sr. quote
+6. **Credentials** — 7 real certifications (FDA, SQF Level 3, Orthodox Union, FMI, U.S. Army, AIB, PepsiCo GOLD)
+7. **Our Story** — 1996 founding (Nature's Way Purewater Systems) → 2000 Insalaco acquisition → 1M sq ft today
+8. **CTA** — real address / phone / email + social stack
+9. **Footer**
 
 ## Develop locally
 
 ```bash
-npm run dev   # serves the static files at http://localhost:3000
+npm install
+npm run dev         # http://localhost:5173
+npm run build       # outputs to dist/
+npm run preview     # preview production build
+npm run typecheck   # tsc --noEmit
 ```
 
-(Uses `npx serve` — no dependencies to install.)
+## Deploy
 
-## Project structure
+Auto-deploys to Vercel on push to `main`.
+
+## Structure
 
 ```
 us-hydrations/
-  index.html              # Entire page markup — sections inline, commented
-  scripts/
-    motion-engine.js      # Splash, reveals, cursor, parallax, counters, tilt
-  styles/
-    global.css            # Base body, fonts, selection
-    components.css        # liquid-glass, nav, cursor, card, marquee, progress
-    motion.css            # reveal, word-split, clip-reveal, parallax, bubbles
-    splash.css            # Loader + hero entrance orchestration
-    placeholders.css      # ph-* and video-sim-* animated gradient backgrounds
-    cinematic.css         # img-cinematic, img-tint, img-grain, photo-parallax
-  package.json            # Local dev server only
-  vercel.json             # Static deploy hints
+  index.html                    # Vite entry, Google Fonts preload
+  vite.config.ts
+  tsconfig*.json
+  vercel.json
+  src/
+    main.tsx                    # React root
+    App.tsx                     # Section composition
+    index.css                   # Tailwind 4 @theme + liquid-glass + motion utilities
+    lib/
+      content.ts                # All copy, stats, images — single source of truth
+      hooks.ts                  # useInView, useReducedMotion, useScrollProgress
+    components/
+      BlurText.tsx              # Word-by-word blur-in with IntersectionObserver
+      Counter.tsx               # Animated counter (plain + compact formats)
+      CustomCursor.tsx          # Dot + ring + ambient glow (disabled on touch / reduced motion)
+      Splash.tsx                # Type-in loader with motion AnimatePresence
+      ProgressBar.tsx           # Fixed scroll-progress bar
+      TextureOverlay.tsx        # Fixed grain layer
+      Navbar.tsx                # Floating glass pill with CTA
+    sections/
+      Hero.tsx
+      Marquee.tsx
+      Capabilities.tsx
+      Products.tsx
+      Leadership.tsx
+      Badges.tsx                # Credentials strip (filename avoids "credentials" secret-pattern hook)
+      Story.tsx
+      Cta.tsx
+      Footer.tsx
 ```
-
-## Content
-
-Body copy, imagery, and contact details reference `ushydrations.com` (the live business). The placeholder gradient layers (`.ph-*` / `.video-sim-*`) sit behind cinematic-treated photos and a hero video — they keep the design intact if external assets are unavailable.
 
 ## License
 

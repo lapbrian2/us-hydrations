@@ -19,6 +19,7 @@ import { Footer } from "./sections/Footer";
 export function App() {
   return (
     <>
+      <a href="#main" className="skip-link">Skip to content</a>
       <SmoothScroll />
       <Splash />
       <ProgressBar />
@@ -27,7 +28,7 @@ export function App() {
       <Navbar />
       <SectionNav />
 
-      <main>
+      <main id="main">
         <Hero />
         <Marquee />
         <ClipReveal>

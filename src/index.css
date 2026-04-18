@@ -46,6 +46,40 @@ body {
   letter-spacing: -0.005em;
   overflow-x: hidden;
 }
+
+/* ============================================================
+   ACCESSIBILITY — focus-visible rings + skip link
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid var(--color-aqua);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-aqua);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  transform: translateY(-120%);
+  background: var(--color-aqua);
+  color: var(--color-ink);
+  padding: 12px 20px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-out-expo);
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
 h1,
 h2,
 h3 {
@@ -130,6 +164,33 @@ h3 {
     position: relative;
     overflow: hidden;
   }
+  /* Editorial button variant — replaces aqua-glow shadows (anti-pattern).
+     Uses tinted hydro-navy shadow instead of neon aqua outer glow. */
+  .btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      135deg,
+      var(--color-aqua) 0%,
+      var(--color-aqua-dark) 100%
+    );
+    color: var(--color-ink);
+    transition: transform 0.35s var(--ease-out-expo);
+    box-shadow:
+      0 8px 24px -12px hsla(170, 40%, 15%, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px) scale(1.02);
+  }
+  .btn-primary:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@layer components {
   .liquid-glass-strong::before {
     content: "";
     position: absolute;

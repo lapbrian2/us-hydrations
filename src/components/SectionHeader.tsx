@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { motion } from "motion/react";
+import { Pill } from "./Pill";
 import { useInView } from "../lib/hooks";
 
 interface SectionHeaderProps {
@@ -57,18 +58,17 @@ export function SectionHeader({
         <div className="max-w-[1000px]">
           {eyebrow && (
             <motion.div
-              className="font-mono uppercase text-aqua mb-4"
-              style={{ fontSize: 11, letterSpacing: "0.2em" }}
+              className="mb-6"
               initial={{ opacity: 0, y: 8 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
               transition={{ delay: 0.25, duration: 0.6 }}
             >
-              {eyebrow}
+              <Pill tone="aqua">{eyebrow}</Pill>
             </motion.div>
           )}
           <h2
             className="font-display uppercase text-cream leading-[0.95]"
-            style={{ fontSize: "clamp(36px, 6.2vw, 108px)" }}
+            style={{ fontSize: "clamp(36px, 5.8vw, 96px)" }}
           >
             {heading}
           </h2>

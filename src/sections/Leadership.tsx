@@ -111,7 +111,10 @@ export function Leadership() {
                   src={l.headshot}
                   alt={l.name}
                   className="absolute inset-0 w-full h-full object-cover"
-                  style={{ filter: "contrast(1.05) saturate(0.82)" }}
+                  style={{
+                    filter: "contrast(1.05) saturate(0.82)",
+                    objectPosition: "center 22%",
+                  }}
                   loading="lazy"
                 />
                 <div

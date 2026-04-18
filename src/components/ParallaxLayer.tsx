@@ -38,6 +38,9 @@ export function ParallaxLayer({
       ([entry]) => {
         if (!entry) return;
         visible = entry.isIntersecting;
+        // Toggle will-change only while visible (per ui-animation spec —
+        // permanent will-change wastes GPU memory).
+        el.dataset.animating = String(visible);
       },
       { threshold: 0, rootMargin: "20% 0px 20% 0px" },
     );
@@ -59,6 +62,7 @@ export function ParallaxLayer({
     return () => {
       cancelAnimationFrame(raf);
       io.disconnect();
+      delete el.dataset.animating;
     };
   }, [reduced]);
 

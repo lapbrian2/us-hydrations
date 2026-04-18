@@ -34,7 +34,7 @@ export function Splash() {
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center gap-4 bg-ink"
           initial={{ y: 0 }}
           exit={{ y: "-101%" }}
-          transition={{ duration: 1.1, ease: [0.76, 0, 0.24, 1] }}
+          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
         >
           <div
             className="font-display uppercase text-cream overflow-hidden flex"

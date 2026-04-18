@@ -24,9 +24,9 @@ interface BlurTextProps {
 export function BlurText({
   children,
   splitBy = "word",
-  stagger = 0.08,
+  stagger = 0.05,
   delay = 0,
-  duration = 0.8,
+  duration = 0.7,
   className,
   style,
 }: BlurTextProps) {

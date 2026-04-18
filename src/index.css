@@ -24,6 +24,12 @@
     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
 
+  /* Animation easing tokens — ui-animation spec */
+  --ease-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-move: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Legacy (still referenced by existing components) */
   --ease-out-expo: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in-out-cubic: cubic-bezier(0.76, 0, 0.24, 1);
 }
@@ -233,12 +239,17 @@ h3 {
    SCROLL-LINKED PARALLAX — JS sets --parallax-y (-1 .. 1)
    via IntersectionObserver + rAF. Multiplied by intensity
    for 3D depth without heavy GPU cost.
+   `will-change` is toggled via [data-animating] (not permanent)
+   per ui-animation best practice — permanent will-change wastes
+   GPU memory.
    ============================================================ */
 .parallax-layer {
-  will-change: transform;
   transform: translate3d(0, calc(var(--parallax-y, 0) * var(--parallax-intensity, 80px)), 0)
     scale(var(--parallax-scale, 1.08));
   transition: transform 0.1s linear;
+}
+.parallax-layer[data-animating="true"] {
+  will-change: transform;
 }
 
 /* ============================================================
@@ -445,9 +456,6 @@ body.cursor-hover .cursor-ring {
   position: relative;
   transition: color 200ms ease;
 }
-.nav-link:hover {
-  color: var(--color-aqua);
-}
 .nav-link::after {
   content: "";
   position: absolute;
@@ -458,11 +466,16 @@ body.cursor-hover .cursor-ring {
   background: var(--color-aqua);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.45s var(--ease-out-expo);
+  transition: transform 0.45s var(--ease-enter);
 }
-.nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    color: var(--color-aqua);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 /* ============================================================
@@ -482,36 +495,33 @@ body.cursor-hover .cursor-ring {
   transition: transform 0.5s var(--ease-in-out-cubic);
   z-index: -1;
 }
-.btn-liquid:hover::before {
-  transform: translateY(0);
-}
-.btn-liquid:hover {
-  color: var(--color-ink) !important;
-}
-.btn-liquid:hover svg {
-  stroke: var(--color-ink) !important;
+@media (hover: hover) and (pointer: fine) {
+  .btn-liquid:hover::before {
+    transform: translateY(0);
+  }
+  .btn-liquid:hover {
+    color: var(--color-ink) !important;
+  }
+  .btn-liquid:hover svg {
+    stroke: var(--color-ink) !important;
+  }
 }
 
 /* ============================================================
-   CARD — lift, 3D tilt, inner glow on hover
+   CARD — lift, 3D tilt, inner glow on hover.
+   All hover effects are gated behind @media (hover: hover) so
+   touch devices don't trigger sticky-hover states.
    ============================================================ */
 .card {
   transition:
-    transform 0.5s var(--ease-out-expo),
-    box-shadow 0.5s var(--ease-out-expo);
+    transform 0.5s var(--ease-move),
+    box-shadow 0.5s var(--ease-move);
   transform-style: preserve-3d;
   perspective: 1200px;
 }
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 40px 80px -30px rgba(124, 245, 216, 0.25);
-}
 .card > * {
   transform-style: preserve-3d;
-  transition: transform 0.35s var(--ease-out-expo);
-}
-.card:hover > * {
-  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.35s var(--ease-move);
 }
 .card::before {
   content: "";
@@ -528,8 +538,18 @@ body.cursor-hover .cursor-ring {
   pointer-events: none;
   z-index: 2;
 }
-.card:hover::before {
-  opacity: 1;
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 60px -28px hsla(195, 60%, 8%, 0.6);
+  }
+  .card:hover > * {
+    transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  }
+  .card:hover::before {
+    opacity: 1;
+  }
 }
 
 /* ============================================================

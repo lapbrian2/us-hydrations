@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
 import { BlurText } from "../components/BlurText";
 import { SectionHeader } from "../components/SectionHeader";
-import { ParallaxLayer } from "../components/ParallaxLayer";
 import { story } from "../lib/content";
 import { useInView } from "../lib/hooks";
 
@@ -19,22 +18,24 @@ export function Story() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15 });
 
   return (
-    <section id="story" className="relative w-full overflow-hidden bg-ink">
-      {/* Fixed cinematic bg behind */}
+    <section id="story" className="section-light relative w-full overflow-hidden">
+      {/* Subtle light-mode background — tinted paper with very soft image wash */}
       <div className="absolute inset-0 overflow-hidden">
-        <ParallaxLayer intensity={80} scale={1.15} className="absolute inset-0">
-          <div
-            className="img-cinematic"
-            style={{ backgroundImage: `url(${storyImage})` }}
-          />
-          <div className="img-tint" />
-          <div className="img-grain" />
-        </ParallaxLayer>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${storyImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: 0.08,
+            filter: "saturate(0.3) brightness(1.4)",
+          }}
+        />
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(5,19,26,0.4) 0%, rgba(5,19,26,0.85) 100%)",
+              "linear-gradient(180deg, var(--color-paper) 0%, rgba(239,243,244,0.88) 40%, var(--color-paper) 100%)",
           }}
         />
       </div>

@@ -57,7 +57,7 @@ export function Leadership() {
   const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <section id="leadership" className="relative w-full bg-ink py-24 lg:py-32 overflow-hidden">
+    <section id="leadership" className="section-light relative w-full py-24 lg:py-32 overflow-hidden">
       <span className="section-num">04 / Leadership</span>
 
       <div className="max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-16">

@@ -6,6 +6,7 @@
    `bg-ink` / `text-cream` / `font-display` auto-generate.
    ============================================================ */
 @theme {
+  /* Dark palette (dominant — hero, marquee, capabilities, products, cta) */
   --color-ink: #05131a;
   --color-panel: #0a1f2b;
   --color-deep: #0e3244;
@@ -14,6 +15,14 @@
   --color-aqua-dark: #1fa08a;
   --color-steel: #8aa0a8;
   --color-pewter: #71717a;
+
+  /* Light palette (editorial sections — leadership, badges, story) */
+  --color-paper: #eff3f4;
+  --color-paper-alt: #e4ecee;
+  --color-paper-warm: #f4f1ea;
+  --color-ink-soft: #0e3244;
+  --color-ink-body: #2d4a5a;
+  --color-ink-muted: #6a8494;
 
   --font-display: "Anton", "Archivo", sans-serif;
   --font-sans:
@@ -94,6 +103,115 @@ h3 {
 ::selection {
   background: var(--color-aqua);
   color: var(--color-ink);
+}
+
+/* ============================================================
+   LIGHT SECTION — editorial alternation.
+   Applied to Leadership, Badges, Story. Overrides text tokens,
+   liquid-glass surface, and hairline colors so the existing
+   dark-first components work naturally on a paper bg.
+   ============================================================ */
+.section-light {
+  background: var(--color-paper);
+  color: var(--color-ink-soft);
+}
+.section-light ::selection {
+  background: var(--color-aqua-dark);
+  color: var(--color-paper);
+}
+
+/* Invert cream → ink-soft for text on light sections */
+.section-light .text-cream {
+  color: var(--color-ink-soft) !important;
+}
+.section-light .text-cream\/95 {
+  color: var(--color-ink-soft) !important;
+}
+.section-light .text-cream\/90 {
+  color: rgba(14, 50, 68, 0.92) !important;
+}
+.section-light .text-cream\/85 {
+  color: rgba(14, 50, 68, 0.85) !important;
+}
+.section-light .text-cream\/80 {
+  color: rgba(14, 50, 68, 0.8) !important;
+}
+.section-light .text-cream\/75 {
+  color: var(--color-ink-body) !important;
+}
+.section-light .text-cream\/70 {
+  color: var(--color-ink-body) !important;
+}
+.section-light .text-cream\/60 {
+  color: var(--color-ink-muted) !important;
+}
+.section-light .text-cream\/55 {
+  color: var(--color-ink-muted) !important;
+}
+.section-light .text-cream\/50 {
+  color: rgba(14, 50, 68, 0.55) !important;
+}
+.section-light .text-cream\/40 {
+  color: rgba(14, 50, 68, 0.5) !important;
+}
+.section-light .text-cream\/20 {
+  color: rgba(14, 50, 68, 0.28) !important;
+}
+
+/* Aqua tokens shift to aqua-dark for legibility on paper */
+.section-light .text-aqua {
+  color: var(--color-aqua-dark) !important;
+}
+.section-light .bg-aqua {
+  background: var(--color-aqua-dark) !important;
+}
+
+/* Hairlines and dividers — tint to navy */
+.section-light .border-cream\/5,
+.section-light .border-cream\/10,
+.section-light .border-cream\/15,
+.section-light .border-cream\/20 {
+  border-color: rgba(14, 50, 68, 0.12) !important;
+}
+.section-light .bg-cream\/8,
+.section-light .bg-cream\/10 {
+  background-color: rgba(14, 50, 68, 0.1) !important;
+}
+
+/* Liquid-glass surface — invert to a subtle paper tone */
+.section-light .liquid-glass {
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 1px rgba(14, 50, 68, 0.04);
+}
+.section-light .liquid-glass::before {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 50, 68, 0.18) 0%,
+    rgba(14, 50, 68, 0.06) 20%,
+    rgba(14, 50, 68, 0) 40%,
+    rgba(14, 50, 68, 0) 60%,
+    rgba(14, 50, 68, 0.06) 80%,
+    rgba(14, 50, 68, 0.18) 100%
+  );
+}
+
+/* Section num (top-left rail) shifts to darker ink */
+.section-light .section-num {
+  color: rgba(14, 50, 68, 0.5);
+}
+
+/* Pill component override for light bg */
+.section-light .text-cream\/80 {
+  color: var(--color-ink-body) !important;
+}
+
+/* Light bg card base */
+.section-light .bg-ink,
+.section-light .bg-ink\/70 {
+  background-color: var(--color-paper-alt) !important;
+}
+.section-light .bg-panel {
+  background-color: rgba(14, 50, 68, 0.05) !important;
 }
 
 .font-serif-italic {

@@ -10,7 +10,7 @@ export function Badges() {
   return (
     <section
       id="credentials"
-      className="relative w-full bg-ink py-24 lg:py-32 overflow-hidden border-t border-cream/5"
+      className="section-light relative w-full py-24 lg:py-32 overflow-hidden"
     >
       <span className="section-num">05 / Credentials</span>
 

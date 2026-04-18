@@ -16,7 +16,7 @@ function MarqueeRow() {
 export function Marquee() {
   return (
     <div
-      className="marquee-section relative py-10 lg:py-14 overflow-hidden border-y border-white/5 bg-ink"
+      className="marquee-section relative py-10 lg:py-14 overflow-hidden border-y border-cream/5 bg-ink"
       aria-label="Product formats and packaging options"
     >
       <div

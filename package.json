@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "US Hydrations \u2014 Pittston, PA premier beverage manufacturer. Rebuilt landing page.",
+  "description": "US Hydrations — Pittston, PA premier beverage manufacturer. Rebuilt landing page.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "hls.js": "^1.5.17",
+    "lenis": "^1.3.23",
     "lucide-react": "^0.460.0",
     "motion": "^12.0.0",
     "react": "^19.0.0",

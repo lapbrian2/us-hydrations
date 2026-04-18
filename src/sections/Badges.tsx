@@ -10,7 +10,7 @@ export function Badges() {
   return (
     <section
       id="credentials"
-      className="relative w-full bg-ink py-24 lg:py-32 overflow-hidden border-t border-white/5"
+      className="relative w-full bg-ink py-24 lg:py-32 overflow-hidden border-t border-cream/5"
     >
       <span className="section-num">05 / Credentials</span>
 
@@ -41,7 +41,7 @@ export function Badges() {
 
         <div
           ref={ref}
-          className="mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-px bg-white/8"
+          className="mt-16 lg:mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-px bg-cream/8"
         >
           {credentials.map((c, i) => (
             <motion.div

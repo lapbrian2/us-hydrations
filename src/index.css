@@ -526,6 +526,39 @@ body.cursor-hover .cursor-ring {
 }
 
 /* ============================================================
+   CLIP REVEAL — sections enter from rounded-inset to full bleed
+   on scroll (premium cinematic wipe between sections).
+   ============================================================ */
+.clip-reveal {
+  clip-path: inset(4% 2% 4% 2% round 28px);
+  transition: clip-path 1.2s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.clip-reveal.in {
+  clip-path: inset(0% 0% 0% 0% round 0px);
+}
+
+/* ============================================================
+   LENIS SMOOTH SCROLL
+   html.lenis-scrolling class is set by Lenis during active scroll.
+   ============================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ============================================================
    ACCESSIBILITY — respect reduced motion
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {

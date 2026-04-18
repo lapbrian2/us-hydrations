@@ -18,7 +18,7 @@ const bubbles = [
 
 export function Hero() {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden rounded-b-[32px]">
+    <section id="hero" className="relative w-full min-h-screen overflow-hidden rounded-b-[32px]">
       {/* Cinematic photo layer (with parallax) */}
       <ParallaxLayer intensity={60} scale={1.12} className="absolute inset-0">
         <div className="absolute inset-0 overflow-hidden">
@@ -79,7 +79,7 @@ export function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-14 min-h-screen flex flex-col justify-end pb-16 lg:pb-24 pt-36 lg:pt-44">
+      <div className="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-16 min-h-screen flex flex-col justify-end pb-16 lg:pb-24 pt-36 lg:pt-44">
         <div className="relative max-w-[1200px]">
           {/* Kicker */}
           <motion.div

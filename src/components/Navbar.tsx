@@ -19,7 +19,7 @@ export function Navbar() {
 
   return (
     <motion.header
-      className="fixed top-4 left-0 right-0 z-[60] px-5 sm:px-8 lg:px-12"
+      className="fixed top-4 left-0 right-0 z-[60] px-5 sm:px-8 lg:px-16"
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 1.9, duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}

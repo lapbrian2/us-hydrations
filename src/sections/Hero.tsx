@@ -64,15 +64,19 @@ export function Hero() {
             }}
           />
 
-          {/* Script accent */}
+          {/* Script accent — avoids mix-blend-exclusion because the
+               bright/yellow parts of the video would invert aqua to pink.
+               Subtle dark backdrop-shadow instead keeps it readable. */}
           <motion.span
-            className="font-script text-aqua mix-exclusion absolute -rotate-2 pointer-events-none z-[6]"
+            className="font-script text-aqua absolute -rotate-2 pointer-events-none z-[6]"
             style={{
               right: "clamp(20px, 4vw, 72px)",
               top: "clamp(100px, 16vh, 160px)",
               fontSize: "clamp(32px, 4.2vw, 76px)",
               lineHeight: 1,
               letterSpacing: "-0.015em",
+              textShadow:
+                "0 2px 14px rgba(5,19,26,0.55), 0 0 30px rgba(5,19,26,0.35)",
             }}
             initial={{ opacity: 0, scale: 0.85, rotate: -10 }}
             animate={{ opacity: 0.95, scale: 1, rotate: -2 }}

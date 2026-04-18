@@ -73,13 +73,15 @@ export function Cta() {
         <div className="max-w-[1831px] w-full mx-auto px-5 sm:px-8 lg:px-16">
           <div className="relative max-w-[1100px] lg:ml-[12%]">
             <motion.span
-              className="font-script text-aqua mix-exclusion absolute -rotate-2 pointer-events-none"
+              className="font-script text-aqua absolute -rotate-2 pointer-events-none"
               style={{
                 left: 0,
                 top: "-0.9em",
                 fontSize: "clamp(28px, 4.2vw, 88px)",
                 lineHeight: 1,
                 letterSpacing: "-0.02em",
+                textShadow:
+                  "0 2px 14px rgba(5,19,26,0.55), 0 0 30px rgba(5,19,26,0.35)",
               }}
               initial={{ opacity: 0, scale: 0.85, rotate: -10 }}
               animate={

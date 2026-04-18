@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>US Hydrations — Pittston, PA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#05131A',        // deep hydro-navy
+          panel: '#0A1F2B',
+          cream: '#EAF4F2',     // soft water-white
+          aqua: '#7CF5D8',      // accent (script + underline)
+          steel: '#8AA0A8',
+        },
+        fontFamily: {
+          display: ['Anton', 'Archivo', 'sans-serif'],
+          sans:    ['Archivo', 'system-ui', 'sans-serif'],
+          serif:   ['Instrument Serif', 'Georgia', 'serif'],
+          script:  ['Caveat', 'cursive'],
+          mono:    ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html, body { background: var(--c-bg, #05131A); color: var(--c-fg, #EAF4F2); }
+  body { font-family: 'Archivo', system-ui, sans-serif; font-feature-settings: 'ss01','cv11'; letter-spacing: -0.005em; }
+  h1, h2, h3 { letter-spacing: -0.01em; }
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  .font-serif-italic { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; letter-spacing: 0; text-transform: none; }
+
+  /* ===== LIQUID GLASS — kept from the blueprint ===== */
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.015);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(180deg,
+      rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.15) 20%,
+      rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%,
+      rgba(255,255,255,0.15) 80%, rgba(255,255,255,0.45) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ===== TEXTURE OVERLAY — subtle industrial grain ===== */
+  .texture-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    pointer-events: none;
+    mix-blend-mode: lighten;
+    opacity: 0.5;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.04  0 0 0 0 0.08  0 0 0 0 0.10  0 0 0 0.25 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 240px 240px;
+  }
+
+  .mix-exclusion { mix-blend-mode: exclusion; }
+
+  /* ===== Placeholder "video" backgrounds — hydro imagery via CSS ===== */
+  /* Hero: water surface with light rays */
+  .ph-hero {
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(124,245,216,0.18) 0%, transparent 45%),
+      radial-gradient(ellipse at 80% 90%, rgba(124,245,216,0.10) 0%, transparent 50%),
+      linear-gradient(180deg, #05131A 0%, #0A2230 40%, #0E3244 70%, #05131A 100%);
+    position: relative;
+  }
+  .ph-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(100deg, rgba(234,244,242,0.04) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient( 80deg, rgba(234,244,242,0.03) 0 1px, transparent 1px 22px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  /* About: production line / stainless tanks */
+  .ph-about {
+    background:
+      radial-gradient(circle at 25% 50%, rgba(138,160,168,0.25) 0%, transparent 35%),
+      radial-gradient(circle at 50% 50%, rgba(138,160,168,0.30) 0%, transparent 30%),
+      radial-gradient(circle at 75% 50%, rgba(138,160,168,0.25) 0%, transparent 35%),
+      linear-gradient(180deg, #05131A 0%, #0A2230 50%, #05131A 100%);
+  }
+
+  /* Product card placeholders */
+  .ph-card-still {
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(234,244,242,0.25) 0%, transparent 45%),
+      linear-gradient(180deg, #0E3244 0%, #0A2230 60%, #05131A 100%);
+  }
+  .ph-card-spring {
+    background:
+      radial-gradient(circle at 50% 45%, rgba(124,245,216,0.35) 0%, transparent 40%),
+      linear-gradient(180deg, #0A2230 0%, #05131A 70%);
+  }
+  .ph-card-alkaline {
+    background:
+      radial-gradient(ellipse at 50% 60%, rgba(180,220,255,0.25) 0%, transparent 45%),
+      linear-gradient(200deg, #0E3244 0%, #0A2230 55%, #05131A 90%);
+  }
+
+  /* CTA: warehouse wide shot */
+  .ph-cta {
+    background:
+      linear-gradient(180deg, #05131A 0%, #0A2230 30%, #0E3244 55%, #0A2230 80%, #05131A 100%);
+    position: relative;
+  }
+  .ph-cta::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(90deg, rgba(234,244,242,0.06) 0 2px, transparent 2px 46px);
+    pointer-events: none;
+  }
+
+  /* Subtle dot/grid on the stats section */
+  .grid-bg {
+    background-color: #05131A;
+    background-image:
+      radial-gradient(rgba(234,244,242,0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .nav-link { transition: color 200ms ease; }
+  .nav-link:hover { color: #7CF5D8; }
+
+  ::selection { background: #7CF5D8; color: #05131A; }
+
+  /* ===================================================================
+     2026 MOTION SYSTEM
+     =================================================================== */
+
+  /* Custom cursor */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 60;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    transition: width .3s cubic-bezier(.2,.8,.2,1), height .3s cubic-bezier(.2,.8,.2,1), opacity .3s;
+  }
+  .cursor-dot { width: 6px; height: 6px; background: #EAF4F2; border-radius: 9999px; }
+  .cursor-ring { width: 32px; height: 32px; border: 1px solid #EAF4F2; border-radius: 9999px; opacity: .6; }
+  body.cursor-hover .cursor-ring { width: 64px; height: 64px; opacity: 1; border-color: #7CF5D8; }
+  @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } }
+
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1); }
+  .reveal-stagger.in > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.in > *:nth-child(1) { transition-delay: .05s; }
+  .reveal-stagger.in > *:nth-child(2) { transition-delay: .15s; }
+  .reveal-stagger.in > *:nth-child(3) { transition-delay: .25s; }
+  .reveal-stagger.in > *:nth-child(4) { transition-delay: .35s; }
+  .reveal-stagger.in > *:nth-child(5) { transition-delay: .45s; }
+  .reveal-stagger.in > *:nth-child(6) { transition-delay: .55s; }
+
+  /* Word-by-word entry on big headings */
+  .word-split .w {
+    display: inline-block;
+    opacity: 0;
+    margin-right: 0.45em;
+    transform: translateY(110%) rotate(4deg);
+    transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1);
+  }
+  .word-split.in .w { opacity: 1; transform: translateY(0) rotate(0deg); }
+  .word-split.in .w:nth-child(1) { transition-delay: .05s; }
+  .word-split.in .w:nth-child(2) { transition-delay: .12s; }
+  .word-split.in .w:nth-child(3) { transition-delay: .19s; }
+  .word-split.in .w:nth-child(4) { transition-delay: .26s; }
+  .word-split.in .w:nth-child(5) { transition-delay: .33s; }
+  .word-split.in .w:nth-child(6) { transition-delay: .40s; }
+  .word-split.in .w:nth-child(7) { transition-delay: .47s; }
+  .word-split.in .w:nth-child(8) { transition-delay: .54s; }
+  .word-split .line { display: block; overflow: hidden; }
+
+  /* Parallax helpers (set --px/--py via JS) */
+  .parallax { transform: translate3d(calc(var(--px,0) * 1px), calc(var(--py,0) * 1px), 0); transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+  .parallax-fast { transform: translate3d(calc(var(--px,0) * 2px), calc(var(--py,0) * 2px), 0); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+
+  /* Magnetic button hover */
+  .magnetic { transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+
+  /* Marquee */
+  @keyframes marquee-x {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track { display: flex; width: max-content; animation: marquee-x 36s linear infinite; }
+  .marquee-section:hover .marquee-track { animation-play-state: paused; }
+
+  /* Card hover lift + inner image scale */
+  .card { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s cubic-bezier(.2,.8,.2,1); }
+  .card:hover { transform: translateY(-8px); box-shadow: 0 40px 80px -30px rgba(124,245,216,0.25); }
+  .card .card-media { transition: transform 1.2s cubic-bezier(.2,.8,.2,1); will-change: transform; }
+  .card:hover .card-media { transform: scale(1.06); }
+
+  /* Nav indicator */
+  .nav-link { position: relative; transition: color 200ms ease; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px;
+    background: #7CF5D8; transform: scaleX(0); transform-origin: right;
+    transition: transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  /* Scroll progress bar */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+    background: linear-gradient(90deg, #7CF5D8, rgba(124,245,216,.4));
+    transform-origin: 0 50%; transform: scaleX(0);
+    z-index: 55;
+  }
+
+  /* Ambient glow that follows cursor */
+  .ambient-glow {
+    position: fixed; top: 0; left: 0; z-index: 0;
+    width: 560px; height: 560px; border-radius: 9999px;
+    background: radial-gradient(circle, rgba(124,245,216,.12) 0%, rgba(124,245,216,0) 60%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+    filter: blur(20px);
+  }
+
+  /* Section reveal curtain (aqua wipe between sections) */
+  .curtain { position: relative; }
+  .curtain::before {
+    content: ''; position: absolute; inset: 0; background: #7CF5D8; z-index: 3;
+    transform-origin: top; transform: scaleY(0);
+    transition: transform 1s cubic-bezier(.76,0,.24,1);
+  }
+  .curtain.in::before { transform: scaleY(0); }
+
+  /* ===== Animated "video-sim" backgrounds — stand in for real footage ===== */
+  @keyframes hydro-drift {
+    0%   { background-position: 0% 50%, 0% 50%; }
+    50%  { background-position: 100% 50%, 60% 40%; }
+    100% { background-position: 0% 50%, 0% 50%; }
+  }
+  .video-sim-hero {
+    background:
+      radial-gradient(ellipse 80% 60% at 30% 20%, rgba(124,245,216,0.22) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 80% 85%, rgba(124,245,216,0.14) 0%, transparent 55%),
+      linear-gradient(110deg, #05131A 0%, #0A2230 35%, #0E3244 55%, #0A2230 75%, #05131A 100%);
+    background-size: 200% 200%, 160% 160%, 180% 180%;
+    animation: hydro-drift 18s ease-in-out infinite;
+  }
+  .video-sim-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(100deg, rgba(234,244,242,0.05) 0 1px, transparent 1px 18px),
+      repeating-linear-gradient( 80deg, rgba(234,244,242,0.03) 0 1px, transparent 1px 22px);
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: ray-scan 14s linear infinite;
+  }
+  @keyframes ray-scan {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(20px); }
+  }
+
+  @keyframes line-scroll {
+    0% { background-position: 0 0; }
+    100% { background-position: 400px 0; }
+  }
+  .video-sim-about {
+    background:
+      linear-gradient(90deg, transparent 0 40px, rgba(138,160,168,0.18) 40px 140px, transparent 140px 200px),
+      radial-gradient(circle at 20% 50%, rgba(124,245,216,0.15) 0%, transparent 25%),
+      radial-gradient(circle at 80% 50%, rgba(138,160,168,0.30) 0%, transparent 30%),
+      linear-gradient(180deg, #05131A 0%, #0A2230 50%, #05131A 100%);
+    background-size: 200px 100%, 100% 100%, 100% 100%, 100% 100%;
+    animation: line-scroll 8s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 50% 40%, 50% 50%; }
+    50%      { background-position: 50% 60%, 50% 55%; }
+  }
+  .video-sim-card-still {
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 30%, rgba(234,244,242,0.30) 0%, transparent 55%),
+      linear-gradient(180deg, #0E3244 0%, #0A2230 60%, #05131A 100%);
+    background-size: 140% 140%, 100% 100%;
+    animation: shimmer 6s ease-in-out infinite;
+  }
+  .video-sim-card-spring {
+    background:
+      radial-gradient(circle 55% at 50% 45%, rgba(124,245,216,0.40) 0%, transparent 50%),
+      linear-gradient(180deg, #0A2230 0%, #05131A 70%);
+    background-size: 160% 160%, 100% 100%;
+    animation: shimmer 7s ease-in-out infinite;
+  }
+  .video-sim-card-alk {
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 60%, rgba(180,220,255,0.30) 0%, transparent 55%),
+      linear-gradient(200deg, #0E3244 0%, #0A2230 55%, #05131A 90%);
+    background-size: 150% 150%, 100% 100%;
+    animation: shimmer 8s ease-in-out infinite;
+  }
+
+  @keyframes sun-drift {
+    0%, 100% { background-position: 62% 50%, 0 0; }
+    50%      { background-position: 58% 52%, 0 0; }
+  }
+  .video-sim-cta {
+    background:
+      radial-gradient(circle 220px at 62% 50%, rgba(124,245,216,0.45) 0%, transparent 60%),
+      linear-gradient(180deg, #05131A 0%, #0A2230 30%, #0E3244 55%, #0A2230 80%, #05131A 100%);
+    animation: sun-drift 9s ease-in-out infinite;
+  }
+  .video-sim-cta::after {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(90deg, rgba(234,244,242,0.06) 0 2px, transparent 2px 46px);
+    pointer-events: none;
+  }
+
+  /* ============================================================
+     PREMIUM ADDITIONS — loader, tilt, clip-reveal, image treatment
+     ============================================================ */
+
+  /* Page loader — type-in splash, wipes up to reveal page */
+  #splash {
+    position: fixed; inset: 0; z-index: 200;
+    background: #05131A;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 18px;
+    transition: transform 1.1s cubic-bezier(.76,0,.24,1);
+    will-change: transform;
+  }
+  #splash.out { transform: translateY(-101%); }
+  #splash .mark {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(32px, 6vw, 64px);
+    letter-spacing: 0.02em;
+    color: #EAF4F2;
+    text-transform: uppercase;
+    overflow: hidden;
+    display: flex; gap: 0.05em;
+  }
+  #splash .mark span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: splash-rise .7s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+  @keyframes splash-rise { to { transform: translateY(0); } }
+  #splash .sub {
+    font-family: 'JetBrains Mono', monospace;
+    color: rgba(234,244,242,0.5);
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: splash-fade .5s .5s ease forwards;
+  }
+  @keyframes splash-fade { to { opacity: 1; } }
+  #splash .bar {
+    width: 120px; height: 1px; background: rgba(234,244,242,.15);
+    overflow: hidden; margin-top: 6px;
+    opacity: 0; animation: splash-fade .3s .4s ease forwards;
+  }
+  #splash .bar::after {
+    content: ''; display: block; height: 100%; width: 0;
+    background: #7CF5D8;
+    animation: splash-load .9s .4s cubic-bezier(.76,0,.24,1) forwards;
+  }
+  @keyframes splash-load { to { width: 100%; } }
+
+  /* Hero orchestration — everything starts hidden, enters in sequence */
+  body.loaded .hero-enter { animation: hero-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+  body.loaded .hero-enter-1 { animation-delay: 1.1s; }
+  body.loaded .hero-enter-2 { animation-delay: 1.25s; }
+  body.loaded .hero-enter-3 { animation-delay: 1.4s; }
+  body.loaded .hero-enter-4 { animation-delay: 1.6s; }
+  body.loaded .hero-enter-5 { animation-delay: 1.8s; }
+  body.loaded .hero-enter-6 { animation-delay: 2.0s; }
+  .hero-enter { opacity: 0; transform: translateY(20px); }
+  @keyframes hero-rise {
+    0%   { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Hero word-split defers to the loaded state */
+  body:not(.loaded) .word-split.in .w { opacity: 0; transform: translateY(110%) rotate(4deg); }
+  body.loaded .hero-word.in .w { animation: word-rise .9s cubic-bezier(.2,.8,.2,1) both; }
+  body.loaded .hero-word.in .w:nth-child(1) { animation-delay: 1.2s; }
+  body.loaded .hero-word.in .w:nth-child(2) { animation-delay: 1.32s; }
+  body.loaded .hero-word.in .w:nth-child(3) { animation-delay: 1.44s; }
+  body.loaded .hero-word.in .w:nth-child(4) { animation-delay: 1.56s; }
+  @keyframes word-rise {
+    to { opacity: 1; transform: translateY(0) rotate(0); }
+  }
+
+  /* 3D card tilt */
+  .card { transform-style: preserve-3d; perspective: 1200px; }
+  .card > * { transform-style: preserve-3d; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+  .card:hover > * { transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+  .card::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: inherit;
+    background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(124,245,216,0.15), transparent 40%);
+    opacity: 0; transition: opacity .4s ease;
+    pointer-events: none; z-index: 2;
+  }
+  .card:hover::before { opacity: 1; }
+
+  /* Section clip-reveal — sections rise & clip into view */
+  .clip-reveal {
+    clip-path: inset(8% 4% 8% 4% round 24px);
+    transition: clip-path 1.2s cubic-bezier(.76,0,.24,1);
+  }
+  .clip-reveal.in { clip-path: inset(0% 0% 0% 0% round 0px); }
+
+  /* Cinematic image treatment — replaces mix-blend-mode:luminosity */
+  .img-cinematic {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0.72;
+    filter: contrast(1.12) saturate(0.6) brightness(0.78);
+  }
+  .img-cinematic::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 50% 50%, transparent 30%, rgba(5,19,26,0.7) 95%),
+      linear-gradient(180deg, rgba(5,19,26,0.15) 0%, rgba(5,19,26,0.55) 100%);
+    mix-blend-mode: multiply;
+  }
+  .img-tint {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(124,245,216,0.08) 0%, rgba(5,19,26,0.25) 70%);
+    mix-blend-mode: color;
+    pointer-events: none;
+  }
+  .img-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/></svg>");
+    opacity: 0.22; mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* Parallax photo wrappers */
+  .photo-parallax { will-change: transform; transition: transform .1s linear; }
+
+  /* Section number ticker — scrubs in on scroll */
+  .section-num {
+    position: absolute; top: 32px; left: 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.2em;
+    color: rgba(234,244,242,0.4);
+    text-transform: uppercase;
+    display: flex; gap: 12px; align-items: center;
+    z-index: 4;
+  }
+  .section-num::before {
+    content: ''; width: 28px; height: 1px; background: #7CF5D8; transform-origin: left;
+    animation: sn-draw 1s cubic-bezier(.76,0,.24,1) both;
+  }
+  @keyframes sn-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  /* Char-by-char hover on nav */
+  .nav-link .ch { display: inline-block; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  .nav-link:hover .ch {
+    animation: ch-bob .6s cubic-bezier(.2,.8,.2,1) calc(var(--i, 0) * 30ms) both;
+  }
+  @keyframes ch-bob {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-6px); color: #7CF5D8; }
+    100% { transform: translateY(0); }
+  }
+
+  /* Liquid-fill button hover */
+  .btn-liquid { position: relative; overflow: hidden; isolation: isolate; }
+  .btn-liquid::before {
+    content: ''; position: absolute; inset: 0; background: #7CF5D8;
+    transform: translateY(101%); transition: transform .5s cubic-bezier(.76,0,.24,1); z-index: -1;
+  }
+  .btn-liquid:hover::before { transform: translateY(0); }
+  .btn-liquid:hover { color: #05131A !important; }
+  .btn-liquid:hover svg { stroke: #05131A !important; }
+
+  /* Rising "bubble" dots behind hero */
+  @keyframes rise {
+    0%   { transform: translateY(20px); opacity: 0; }
+    15%  { opacity: 0.7; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+  }
+  .bubble {
+    position: absolute; bottom: -20px;
+    width: 6px; height: 6px; border-radius: 9999px;
+    background: rgba(124,245,216,0.6);
+    box-shadow: 0 0 12px rgba(124,245,216,0.4);
+    animation: rise linear infinite;
+  }
+</style>
+</head>
+<body class="bg-bg text-cream">
+
+  <!-- Splash / loader -->
+  <div id="splash">
+    <div class="mark">
+      <span style="animation-delay:0ms">U</span><span style="animation-delay:40ms">S</span><span style="width:.3em"></span>
+      <span style="animation-delay:120ms">H</span><span style="animation-delay:160ms">Y</span><span style="animation-delay:200ms">D</span><span style="animation-delay:240ms">R</span><span style="animation-delay:280ms">A</span><span style="animation-delay:320ms">T</span><span style="animation-delay:360ms">I</span><span style="animation-delay:400ms">O</span><span style="animation-delay:440ms">N</span><span style="animation-delay:480ms">S</span>
+    </div>
+    <div class="bar"></div>
+    <div class="sub">Est. 2005 &nbsp;·&nbsp; Pittston, PA</div>
+  </div>
+
+  <!-- Scroll progress bar -->
+  <div class="progress-bar" id="progress"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Ambient glow that follows cursor -->
+  <div class="ambient-glow" id="ambientGlow"></div>
+
+  <!-- Texture overlay -->
+  <div class="texture-overlay"></div>
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       ============================================================ -->
+  <section class="relative w-full min-h-screen overflow-hidden rounded-b-[32px]">
+    <!-- Animated hydro background (fallback behind video) -->
+    <div class="absolute inset-0 ph-hero video-sim-hero"></div>
+    <!-- Real USH plant photo layer (cinematic treatment) -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="img-cinematic photo-parallax" data-parallax="0.25" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_1-23-19_USH_Session_DSC9996.jpg');"></div>
+      <div class="img-tint"></div>
+      <div class="img-grain"></div>
+    </div>
+    <div class="absolute inset-0" style="background:linear-gradient(180deg, rgba(5,19,26,0.25) 0%, rgba(5,19,26,0.15) 45%, rgba(5,19,26,0.85) 100%);"></div>
+    <!-- Real US Hydrations hero video -->
+    <video
+      class="absolute inset-0 w-full h-full object-cover"
+      autoplay loop muted playsinline
+      poster="https://www.ushydrations.com/wp-content/uploads/2019/04/placeholder.png"
+      src="https://www.ushydrations.com/wp-content/uploads/2020/01/US-Hydrations-V7.mp4"></video>
+
+    <!-- Top scrim: protects header legibility over any video frame -->
+    <div class="absolute inset-x-0 top-0 pointer-events-none z-[5]" style="height:180px; background:linear-gradient(180deg, rgba(5,19,26,0.85) 0%, rgba(5,19,26,0.45) 55%, transparent 100%);"></div>
+
+    <!-- Rising bubbles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <span class="bubble" style="left:8%;  animation-duration:14s; animation-delay:0s;"></span>
+      <span class="bubble" style="left:17%; animation-duration:18s; animation-delay:3s;"></span>
+      <span class="bubble" style="left:26%; animation-duration:12s; animation-delay:6s;"></span>
+      <span class="bubble" style="left:38%; animation-duration:20s; animation-delay:1s;"></span>
+      <span class="bubble" style="left:52%; animation-duration:15s; animation-delay:4s;"></span>
+      <span class="bubble" style="left:63%; animation-duration:17s; animation-delay:8s;"></span>
+      <span class="bubble" style="left:74%; animation-duration:13s; animation-delay:2s;"></span>
+      <span class="bubble" style="left:83%; animation-duration:19s; animation-delay:5s;"></span>
+      <span class="bubble" style="left:91%; animation-duration:16s; animation-delay:7s;"></span>
+    </div>
+
+    <div class="absolute inset-0 bg-black/20"></div>
+
+    <!-- Content container -->
+    <div class="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12 pt-8 pb-16 min-h-screen flex flex-col">
+
+      <!-- HEADER -->
+      <header class="flex items-center justify-between relative">
+        <!-- Logo -->
+        <div class="flex items-center gap-2 font-display text-cream uppercase tracking-wide" style="font-size:16px;">
+          <!-- droplet mark -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7CF5D8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 7.6 7 12a7 7 0 0 1-14 0c0-4.4 7-12 7-12z"/></svg>
+          <span>US&nbsp;Hydrations</span>
+        </div>
+
+        <!-- Nav (desktop) — matches USH site structure -->
+        <nav class="hidden lg:block liquid-glass rounded-[28px]" style="padding: 24px 52px;">
+          <ul class="flex items-center gap-8 font-display uppercase tracking-wider" style="font-size:13px;">
+            <li><a href="#" class="nav-link text-cream">Capabilities</a></li>
+            <li><a href="#" class="nav-link text-cream">Location</a></li>
+            <li><a href="#" class="nav-link text-cream">Credentials</a></li>
+            <li><a href="#" class="nav-link text-cream">Leadership</a></li>
+            <li><a href="#" class="nav-link text-cream">Our Story</a></li>
+            <li><a href="#" class="nav-link text-cream">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right: CTA pill -->
+        <a href="#contact" class="hidden lg:inline-flex items-center gap-2 liquid-glass rounded-[28px] font-display uppercase tracking-wider btn-liquid"
+           style="padding: 18px 28px; font-size:13px;">
+          <span>Request a Quote</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <div class="font-display uppercase md:hidden" style="font-size:12px; color:#7CF5D8;">PITTSTON</div>
+      </header>
+
+      <!-- HERO CONTENT -->
+      <div class="flex-1 flex items-center relative mt-16 lg:mt-24">
+        <div class="relative lg:ml-32 max-w-[900px]">
+          <!-- Small kicker -->
+          <div class="flex items-center gap-3 mb-6 font-mono uppercase text-cream/70 hero-enter hero-enter-1" style="font-size:12px; letter-spacing:0.18em;">
+            <span class="w-8 h-px bg-aqua"></span>
+            Est. 2005 · Pittston, Pennsylvania
+          </div>
+
+          <h1 class="font-display uppercase text-cream word-split hero-word
+                     text-[40px] sm:text-[60px] md:text-[75px] lg:text-[96px]
+                     leading-[0.95]">
+            <span class="line"><span class="w">Premier</span><span class="w">beverage</span></span>
+            <span class="line"><span class="w font-serif-italic text-aqua" style="text-transform:none;letter-spacing:-0.01em;">manufacturing,</span><span class="w">since&nbsp;2005.</span></span>
+          </h1>
+
+          <!-- Script accent -->
+          <span class="font-script text-aqua mix-exclusion opacity-95 absolute
+                       -rotate-2 pointer-events-none hero-enter hero-enter-4"
+                style="right: -10px; top: -34px; font-size: clamp(28px, 4.2vw, 56px); line-height: 1;">
+            Pittston, PA
+          </span>
+
+          <!-- Support copy -->
+          <p class="mt-8 max-w-[560px] font-mono uppercase text-cream/80 hero-enter hero-enter-5"
+             style="font-size:14px; line-height:1.7; letter-spacing:0.04em;">
+            One-stop, high-volume manufacturing for leading national and global brands.
+            From drink development to delivery &mdash; uncompromising quality, superior service.
+          </p>
+
+          <!-- Stat strip -->
+          <div class="mt-10 grid grid-cols-3 max-w-[620px] gap-6 hero-enter hero-enter-6">
+            <div>
+              <div class="font-display text-cream counter" data-target="240" data-suffix="M" style="font-size:40px; line-height:1;">0M</div>
+              <div class="font-mono uppercase text-cream/60 mt-2" style="font-size:11px; letter-spacing:0.12em;">Bottles / year</div>
+            </div>
+            <div>
+              <div class="font-display text-cream counter" data-target="14" style="font-size:40px; line-height:1;">0</div>
+              <div class="font-mono uppercase text-cream/60 mt-2" style="font-size:11px; letter-spacing:0.12em;">Production lines</div>
+            </div>
+            <div>
+              <div class="font-display text-cream" style="font-size:40px; line-height:1;">24/7</div>
+              <div class="font-mono uppercase text-cream/60 mt-2" style="font-size:11px; letter-spacing:0.12em;">Shift coverage</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact icons — DESKTOP (top-right stacked) -->
+        <div class="hidden lg:flex flex-col gap-3 absolute top-0 right-0">
+          <a href="tel:+15706557755" aria-label="Call"
+             class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/>
+            </svg>
+          </a>
+          <a href="/cdn-cgi/l/email-protection#e881868e87a89d9b80918c9a899c8187869bc68b8785" aria-label="Email" class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn"
+             class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact icons — MOBILE -->
+      <div class="lg:hidden flex gap-3 justify-center pb-8">
+        <a href="tel:+15706557755" aria-label="Call" class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#365f5850597643455e4f524457425f5958451855595b" aria-label="Email" class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="liquid-glass rounded-[1rem] w-14 h-14 flex items-center justify-center hover:bg-white/10 transition">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       KINETIC MARQUEE — between sections
+       ============================================================ -->
+  <div class="marquee-section relative py-10 lg:py-14 overflow-hidden border-y border-white/5 bg-bg">
+    <div class="marquee-track font-display uppercase text-cream/90" style="font-size:clamp(44px,6vw,92px); line-height:1;">
+      <span class="px-10 flex items-center gap-10">Still · Spring · Alkaline · Flavored <span class="inline-block w-3 h-3 rounded-full bg-aqua"></span> Private Label · Co-Pack · PET · Aluminum <span class="inline-block w-3 h-3 rounded-full bg-aqua"></span></span>
+      <span class="px-10 flex items-center gap-10">Still · Spring · Alkaline · Flavored <span class="inline-block w-3 h-3 rounded-full bg-aqua"></span> Private Label · Co-Pack · PET · Aluminum <span class="inline-block w-3 h-3 rounded-full bg-aqua"></span></span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 2 — ABOUT / FACILITY
+       ============================================================ -->
+  <section class="relative w-full min-h-screen overflow-hidden clip-reveal">
+    <div class="absolute inset-0 ph-about video-sim-about"></div>
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="img-cinematic photo-parallax" data-parallax="0.15" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_2-5-19_USH_Additional_Location_DSC4875.jpg');"></div>
+      <div class="img-tint"></div>
+      <div class="img-grain"></div>
+    </div>
+    <span class="section-num">02 / Facility</span>
+
+    <div class="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-20 lg:py-24 min-h-screen flex flex-col justify-between gap-16">
+
+      <!-- TOP ROW -->
+      <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
+        <!-- Heading -->
+        <div class="relative inline-block">
+          <h2 class="font-display uppercase text-cream
+                     text-[32px] sm:text-[44px] md:text-[52px] lg:text-[72px]
+                     leading-[1]">
+            <span class="line"><span class="w">One</span> <span class="w">plant.</span></span>
+            <span class="line"><span class="w font-serif-italic text-aqua" style="text-transform:none;">every</span> <span class="w">format.</span></span>
+          </h2>
+          <span class="font-script text-aqua mix-exclusion absolute -rotate-2 pointer-events-none"
+                style="right: -60px; bottom: -24px; font-size: clamp(40px, 5.2vw, 72px); line-height: 1;">
+            Pittston
+          </span>
+        </div>
+
+        <!-- Lead paragraph -->
+        <p class="font-mono uppercase text-cream max-w-[320px]
+                  text-[14px] sm:text-[15px] md:text-[16px] leading-[1.6]">
+          A 210,000 sq. ft. SQF-certified facility off I-81. PET &amp; aluminum. Still, sparkling, flavored, and alkaline — blown, filled, labeled, and palletized under one roof.
+        </p>
+      </div>
+
+      <!-- CAPABILITIES ROW -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+        <!-- Tile 1 -->
+        <div class="bg-bg/70 p-6 lg:p-8">
+          <div class="font-display text-aqua" style="font-size:14px; letter-spacing:0.14em;">01</div>
+          <div class="mt-4 font-display uppercase text-cream" style="font-size:clamp(20px,2vw,28px); line-height:1.1;">Blow-fill-cap</div>
+          <p class="mt-3 font-mono uppercase text-cream/60" style="font-size:11px; line-height:1.6; letter-spacing:0.08em;">
+            In-line PET preform blowing at 54,000 BPH.
+          </p>
+        </div>
+        <!-- Tile 2 -->
+        <div class="bg-bg/70 p-6 lg:p-8">
+          <div class="font-display text-aqua" style="font-size:14px; letter-spacing:0.14em;">02</div>
+          <div class="mt-4 font-display uppercase text-cream" style="font-size:clamp(20px,2vw,28px); line-height:1.1;">Hot &amp; cold fill</div>
+          <p class="mt-3 font-mono uppercase text-cream/60" style="font-size:11px; line-height:1.6; letter-spacing:0.08em;">
+            Flavored, vitamin, and functional beverage formats.
+          </p>
+        </div>
+        <!-- Tile 3 -->
+        <div class="bg-bg/70 p-6 lg:p-8">
+          <div class="font-display text-aqua" style="font-size:14px; letter-spacing:0.14em;">03</div>
+          <div class="mt-4 font-display uppercase text-cream" style="font-size:clamp(20px,2vw,28px); line-height:1.1;">Private label</div>
+          <p class="mt-3 font-mono uppercase text-cream/60" style="font-size:11px; line-height:1.6; letter-spacing:0.08em;">
+            Shrink, pressure-sensitive, and direct-print options.
+          </p>
+        </div>
+        <!-- Tile 4 -->
+        <div class="bg-bg/70 p-6 lg:p-8">
+          <div class="font-display text-aqua" style="font-size:14px; letter-spacing:0.14em;">04</div>
+          <div class="mt-4 font-display uppercase text-cream" style="font-size:clamp(20px,2vw,28px); line-height:1.1;">Warehouse &amp; ship</div>
+          <p class="mt-3 font-mono uppercase text-cream/60" style="font-size:11px; line-height:1.6; letter-spacing:0.08em;">
+            60,000 pallet positions. Same-day LTL pickup.
+          </p>
+        </div>
+      </div>
+
+      <!-- BOTTOM: certifications + decorative paragraphs -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+        <div class="flex flex-wrap items-center gap-x-10 gap-y-4 font-display uppercase text-cream/80" style="font-size:14px; letter-spacing:0.14em;">
+          <span>SQF Level 2</span>
+          <span class="w-1 h-1 bg-aqua rounded-full"></span>
+          <span>FDA Registered</span>
+          <span class="w-1 h-1 bg-aqua rounded-full"></span>
+          <span>Kosher Certified</span>
+          <span class="w-1 h-1 bg-aqua rounded-full"></span>
+          <span>NSF Tested</span>
+        </div>
+        <p class="font-mono uppercase text-cream opacity-20 max-w-[300px]
+                  text-[13px] leading-[1.6] hidden lg:block">
+          Sourced locally. Filtered through multi-stage RO and UV. Bottled at spec, verified by in-house lab.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — PRODUCT LINES
+       ============================================================ -->
+  <section class="relative w-full bg-bg grid-bg py-20 lg:py-28 clip-reveal">
+    <span class="section-num">03 / Product</span>
+    <div class="max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12">
+
+      <!-- HEADER ROW -->
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 mb-16">
+        <!-- Heading -->
+        <h2 class="font-display uppercase text-cream word-split
+                   text-[32px] sm:text-[44px] md:text-[52px] lg:text-[72px]
+                   leading-[1]">
+          <span class="line"><span class="w">Product</span></span>
+          <span class="line"><span class="inline-block ml-12 md:ml-24 lg:ml-32"><span class="w"><span class="font-script text-aqua normal-case mix-exclusion" style="letter-spacing:-0.02em;">lines&nbsp;</span></span><span class="w"><span class="font-display">we&nbsp;run</span></span></span></span>
+        </h2>
+
+        <!-- View full spec sheet button -->
+        <a href="#" class="group inline-flex flex-col items-start self-start lg:self-end">
+          <span class="flex items-end gap-4 font-display uppercase text-cream leading-[0.9]">
+            <span class="text-[32px] sm:text-[44px] md:text-[52px] lg:text-[60px]">SPEC</span>
+            <span class="flex flex-col leading-[1]">
+              <span class="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[36px]">FULL</span>
+              <span class="text-[20px] sm:text-[26px] md:text-[32px] lg:text-[36px]">SHEET</span>
+            </span>
+          </span>
+          <span class="block bg-aqua w-full mt-3" style="height:clamp(6px,0.8vw,10px);"></span>
+        </a>
+      </div>
+
+      <!-- CARD GRID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-stagger">
+
+        <!-- Card 1: Still -->
+        <div class="liquid-glass rounded-[32px] p-[18px] card">
+          <div class="relative rounded-[24px] overflow-hidden" style="padding-bottom: 100%;">
+            <div class="absolute inset-0 ph-card-still video-sim-card-still"></div>
+            <div class="img-cinematic" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_2-5-19_USH_Additional_Location_DSC1155.jpg');"></div>
+            <div class="img-tint"></div>
+
+            <!-- Bottle illustration (placeholder-grade, geometric) -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg width="40%" height="70%" viewBox="0 0 80 160" fill="none">
+                <rect x="30" y="0" width="20" height="14" rx="2" fill="#EAF4F2" opacity="0.85"/>
+                <path d="M28 14 H52 L58 40 V150 a6 6 0 0 1-6 6 H28 a6 6 0 0 1-6-6 V40 Z" fill="rgba(234,244,242,0.12)" stroke="#EAF4F2" stroke-opacity="0.6" stroke-width="1.5"/>
+                <rect x="24" y="70" width="32" height="22" fill="#EAF4F2" opacity="0.12"/>
+                <text x="40" y="85" text-anchor="middle" font-family="Anton" font-size="8" fill="#EAF4F2" letter-spacing="1">STILL</text>
+              </svg>
+            </div>
+
+            <!-- Overlay bar -->
+            <div class="absolute left-4 right-4 bottom-4 liquid-glass rounded-[20px] flex items-center justify-between"
+                 style="padding: 16px 20px;">
+              <div class="flex flex-col">
+                <span class="font-mono uppercase text-cream/70" style="font-size:11px; letter-spacing:0.08em;">Format · Still spring</span>
+                <span class="font-display text-cream" style="font-size:18px;">8oz · 16.9oz · 1L</span>
+              </div>
+              <button aria-label="View spec"
+                      class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+                      style="background: linear-gradient(to bottom right, #7CF5D8, #1FA08A); box-shadow: 0 8px 24px rgba(124,245,216,0.35);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#05131A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Alkaline -->
+        <div class="liquid-glass rounded-[32px] p-[18px] card">
+          <div class="relative rounded-[24px] overflow-hidden" style="padding-bottom: 100%;">
+            <div class="absolute inset-0 ph-card-spring video-sim-card-spring"></div>
+            <div class="img-cinematic" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_2-5-19_USH_Additional_Location_DSC0995.jpg');"></div>
+            <div class="img-tint"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg width="40%" height="70%" viewBox="0 0 80 160" fill="none">
+                <rect x="32" y="0" width="16" height="12" rx="2" fill="#7CF5D8" opacity="0.9"/>
+                <path d="M26 12 H54 L60 38 V150 a6 6 0 0 1-6 6 H26 a6 6 0 0 1-6-6 V38 Z" fill="rgba(124,245,216,0.18)" stroke="#7CF5D8" stroke-opacity="0.8" stroke-width="1.5"/>
+                <rect x="22" y="72" width="36" height="26" fill="#7CF5D8" opacity="0.22"/>
+                <text x="40" y="82" text-anchor="middle" font-family="Anton" font-size="8" fill="#EAF4F2" letter-spacing="1">ALKALINE</text>
+                <text x="40" y="94" text-anchor="middle" font-family="Anton" font-size="6" fill="#EAF4F2" opacity="0.7">pH 9.5</text>
+              </svg>
+            </div>
+
+            <div class="absolute left-4 right-4 bottom-4 liquid-glass rounded-[20px] flex items-center justify-between"
+                 style="padding: 16px 20px;">
+              <div class="flex flex-col">
+                <span class="font-mono uppercase text-cream/70" style="font-size:11px; letter-spacing:0.08em;">Format · Alkaline pH 9.5</span>
+                <span class="font-display text-cream" style="font-size:18px;">500ml · 1L · 1.5L</span>
+              </div>
+              <button aria-label="View spec"
+                      class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+                      style="background: linear-gradient(to bottom right, #7CF5D8, #1FA08A); box-shadow: 0 8px 24px rgba(124,245,216,0.35);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#05131A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Flavored / Functional -->
+        <div class="liquid-glass rounded-[32px] p-[18px] card">
+          <div class="relative rounded-[24px] overflow-hidden" style="padding-bottom: 100%;">
+            <div class="absolute inset-0 ph-card-alkaline video-sim-card-alk"></div>
+            <div class="img-cinematic" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_1-23-19_USH_Session_DSC0383.jpg');"></div>
+            <div class="img-tint"></div>
+
+            <div class="absolute inset-0 flex items-center justify-center">
+              <!-- aluminum can illustration -->
+              <svg width="38%" height="66%" viewBox="0 0 80 150" fill="none">
+                <rect x="16" y="8" width="48" height="134" rx="6" fill="rgba(180,220,255,0.15)" stroke="#EAF4F2" stroke-opacity="0.7" stroke-width="1.5"/>
+                <rect x="16" y="8" width="48" height="6" fill="#EAF4F2" opacity="0.35"/>
+                <rect x="16" y="136" width="48" height="6" fill="#EAF4F2" opacity="0.35"/>
+                <rect x="20" y="58" width="40" height="36" fill="rgba(180,220,255,0.22)"/>
+                <text x="40" y="74" text-anchor="middle" font-family="Anton" font-size="7" fill="#EAF4F2" letter-spacing="1">FUNCTION</text>
+                <text x="40" y="86" text-anchor="middle" font-family="Anton" font-size="6" fill="#EAF4F2" opacity="0.7">+ELECTROLYTES</text>
+              </svg>
+            </div>
+
+            <div class="absolute left-4 right-4 bottom-4 liquid-glass rounded-[20px] flex items-center justify-between"
+                 style="padding: 16px 20px;">
+              <div class="flex flex-col">
+                <span class="font-mono uppercase text-cream/70" style="font-size:11px; letter-spacing:0.08em;">Format · Functional + flavored</span>
+                <span class="font-display text-cream" style="font-size:18px;">12oz · 16oz sleek</span>
+              </div>
+              <button aria-label="View spec"
+                      class="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition"
+                      style="background: linear-gradient(to bottom right, #7CF5D8, #1FA08A); box-shadow: 0 8px 24px rgba(124,245,216,0.35);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#05131A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — CTA / CONTACT
+       ============================================================ -->
+  <section id="contact" class="relative w-full overflow-hidden bg-bg">
+    <!-- Full-width CTA animated background (stands in for native-aspect video) -->
+    <div class="ph-cta video-sim-cta w-full relative" style="aspect-ratio: 21/9; min-height: 560px;">
+      <div class="img-cinematic" style="background-image:url('https://www.ushydrations.com/wp-content/uploads/2019/05/2-15-19_USH_Addl_DSC1676.jpg');"></div>
+      <div class="img-tint"></div>
+      <div class="img-grain"></div>
+      <div class="absolute inset-0" style="background:linear-gradient(90deg, rgba(5,19,26,0.80) 0%, rgba(5,19,26,0.25) 50%, rgba(5,19,26,0.80) 100%);"></div>
+      <!-- Decorative horizon line + sun-glint -->
+      <div class="absolute left-0 right-0" style="top:62%; height:1px; background:linear-gradient(90deg, transparent, rgba(124,245,216,0.6), transparent);"></div>
+      <div class="absolute" style="left:62%; top:48%; width:220px; height:220px; border-radius:9999px; background:radial-gradient(circle, rgba(124,245,216,0.35), transparent 60%); filter:blur(6px);"></div>
+    </div>
+
+    <!-- Text overlay, right-aligned -->
+    <div class="absolute inset-0 flex items-center justify-end pointer-events-none">
+      <div class="max-w-[1831px] w-full mx-auto px-5 sm:px-8 lg:px-12 lg:pr-[14%] lg:pl-[15%]">
+        <div class="relative ml-auto text-left max-w-[760px]">
+          <span class="font-script text-aqua mix-exclusion absolute -rotate-2"
+                style="left: 0; top: -0.9em; font-size: clamp(22px, 3.6vw, 72px); line-height: 1;">
+            Let&rsquo;s run it
+          </span>
+          <h2 class="font-display uppercase text-cream word-split
+                     text-[20px] sm:text-[32px] md:text-[48px] lg:text-[68px]
+                     leading-[1]">
+            <span class="line" style="margin-bottom:clamp(16px,2vw,48px);"><span class="w">YOUR</span> <span class="w">BRAND.</span></span>
+            <span class="line"><span class="w">OUR</span> <span class="w">LINE.</span></span>
+            <span class="line"><span class="w">SHORT</span> <span class="w">RUNS</span> <span class="w">WELCOME.</span></span>
+            <span class="line"><span class="w">SHIP</span> <span class="w">FROM</span> <span class="w">PITTSTON.</span></span>
+          </h2>
+
+          <!-- Address / contact micro-block -->
+          <div class="mt-10 flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-12 pointer-events-auto">
+            <div>
+              <div class="font-mono uppercase text-cream/60" style="font-size:11px; letter-spacing:0.14em;">Plant address</div>
+              <div class="font-display uppercase text-cream mt-2" style="font-size:18px; line-height:1.3;">
+                164 Commerce Road<br/>Pittston, PA 18640
+              </div>
+            </div>
+            <div>
+              <div class="font-mono uppercase text-cream/60" style="font-size:11px; letter-spacing:0.14em;">Sales</div>
+              <div class="font-display uppercase text-cream mt-2" style="font-size:18px;">
+                <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="751c1b131a3500061d0c110714011c1a1b065b161a18">[email&#160;protected]</a><br/>(570) 655-7755
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact icon stack, bottom-left -->
+    <div class="absolute pointer-events-auto"
+         style="left: 6%; bottom: 12%;">
+      <div class="liquid-glass overflow-hidden flex flex-col
+                  rounded-[0.75rem] md:rounded-[1rem] lg:rounded-[1.25rem]">
+        <a href="tel:+15706557755" aria-label="Call"
+           class="flex items-center justify-center border-b border-white/10 hover:bg-white/10 transition
+                  w-[16vw] sm:w-[10rem] md:w-[8rem] lg:w-[11rem]
+                  h-[16vw] sm:h-[4.5rem] md:h-[4.5rem] lg:h-[5.5rem]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg>
+        </a>
+        <a href="/cdn-cgi/l/email-protection#472e2921280732342f3e233526332e2829346924282a" aria-label="Email" class="flex items-center justify-center border-b border-white/10 hover:bg-white/10 transition
+                  w-[16vw] sm:w-[10rem] md:w-[8rem] lg:w-[11rem]
+                  h-[16vw] sm:h-[4.5rem] md:h-[4.5rem] lg:h-[5.5rem]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn"
+           class="flex items-center justify-center hover:bg-white/10 transition
+                  w-[16vw] sm:w-[10rem] md:w-[8rem] lg:w-[11rem]
+                  h-[16vw] sm:h-[4.5rem] md:h-[4.5rem] lg:h-[5.5rem]">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#EAF4F2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer strip -->
+    <div class="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12 py-8 flex items-center justify-between border-t border-white/5">
+      <span class="font-display uppercase text-cream" style="font-size:14px;">© US Hydrations 2026 · Pittston, PA</span>
+      <span class="font-mono uppercase text-cream/60" style="font-size:11px; letter-spacing:0.12em;">Lot / 04 · Run / A</span>
+    </div>
+  </section>
+
+<!-- =======================================================
+     MOTION ENGINE — 2026 scroll + cursor + reveal + magnetic
+     ======================================================= -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js" defer></script><script>
+(() => {
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // --- SPLASH: remove after ~1.7s (after type-in + bar) ---
+  const splash = document.getElementById('splash');
+  const finishSplash = () => {
+    if (!splash) return;
+    splash.classList.add('out');
+    document.body.classList.add('loaded');
+    setTimeout(() => splash.remove(), 1200);
+  };
+  if (prefersReduced) { finishSplash(); }
+  else { setTimeout(finishSplash, 1700); }
+
+  // --- NAV char-split for hover bob ---
+  document.querySelectorAll('.nav-link').forEach(a => {
+    const txt = a.textContent;
+    a.innerHTML = '';
+    [...txt].forEach((c, i) => {
+      const s = document.createElement('span');
+      s.className = 'ch'; s.style.setProperty('--i', i); s.textContent = c === ' ' ? '\u00A0' : c;
+      a.appendChild(s);
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal, .reveal-stagger, .word-split, .clip-reveal').forEach(el => io.observe(el));
+
+  // Scroll progress
+  const bar = document.getElementById('progress');
+  const onScroll = () => {
+    const sh = document.documentElement.scrollHeight - innerHeight;
+    const p = sh > 0 ? scrollY / sh : 0;
+    bar.style.transform = `scaleX(${p})`;
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if (prefersReduced) return;
+
+  // Custom cursor
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  const glow = document.getElementById('ambientGlow');
+  let mx = innerWidth/2, my = innerHeight/2, rx = mx, ry = my, gx = mx, gy = my;
+  addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; });
+  (function tick() {
+    rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+    gx += (mx - gx) * 0.06; gy += (my - gy) * 0.06;
+    dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+    ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+    glow.style.transform = `translate(${gx}px, ${gy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(tick);
+  })();
+
+  // Cursor hover states
+  document.querySelectorAll('a, button, .card, .magnetic').forEach(el => {
+    el.addEventListener('pointerenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Magnetic pull on CTAs (but NOT on .card — card gets 3D tilt instead)
+  document.querySelectorAll('.magnetic, a.liquid-glass, button.btn-liquid').forEach(el => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width/2)) * 0.2;
+      const dy = (e.clientY - (r.top + r.height/2)) * 0.2;
+      el.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  });
+
+  // 3D card tilt
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('pointermove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      const ry = (px - 0.5) * 10; // degrees
+      const rx = (0.5 - py) * 8;
+      card.style.setProperty('--rx', rx + 'deg');
+      card.style.setProperty('--ry', ry + 'deg');
+      card.style.setProperty('--gx', (px * 100) + '%');
+      card.style.setProperty('--gy', (py * 100) + '%');
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+    });
+  });
+
+  // Parallax on photo layers — per-element with data-parallax strength
+  const parallaxEls = document.querySelectorAll('.photo-parallax');
+  const parallaxUpdate = () => {
+    parallaxEls.forEach(el => {
+      const strength = parseFloat(el.dataset.parallax) || 0.2;
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const offset = (center - innerHeight / 2) * strength * -1;
+      const scale = 1 + Math.min(0.12, Math.abs(scrollY / innerHeight) * 0.06);
+      el.style.transform = `translate3d(0, ${offset}px, 0) scale(${scale})`;
+    });
+  };
+  addEventListener('scroll', parallaxUpdate, { passive: true });
+  addEventListener('resize', parallaxUpdate);
+  parallaxUpdate();
+
+  // Marquee velocity scrub — cursor drags speed
+  const mq = document.querySelector('.marquee-section');
+  if (mq) {
+    const track = mq.querySelector('.marquee-track');
+    let lastX = 0, vel = 0;
+    mq.addEventListener('pointermove', (e) => {
+      vel = e.clientX - lastX; lastX = e.clientX;
+      const boost = Math.min(3, Math.abs(vel) * 0.05);
+      track.style.animationDuration = `${Math.max(8, 36 - boost * 8)}s`;
+    });
+    mq.addEventListener('pointerleave', () => {
+      track.style.animationDuration = '36s';
+    });
+  }
+
+  // Animated counters
+  const counters = document.querySelectorAll('.counter');
+  const cio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseFloat(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      const dur = 1600; const start = performance.now();
+      (function anim(now) {
+        const t = Math.min(1, (now - start) / dur);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (t < 1) requestAnimationFrame(anim);
+      })(start);
+      cio.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => cio.observe(c));
+})();
+</script>
+<!-- =======================================================
+     TWEAKS PANEL — 2026 edit mode
+     ======================================================= -->
+<script>
+(() => {
+  const TWEAKS = /*EDITMODE-BEGIN*/{
+    "primaryColor": "#7CF5D8",
+    "bgColor": "#05131A",
+    "fgColor": "#EAF4F2",
+    "displayFont": "Anton",
+    "bodyFont": "Archivo",
+    "scriptFont": "Caveat",
+    "headlineSize": 94,
+    "showMarquee": true,
+    "showCursor": true,
+    "motionLevel": "full"
+  }/*EDITMODE-END*/;
+
+  const apply = (t) => {
+    document.documentElement.style.setProperty('--c-bg', t.bgColor);
+    document.documentElement.style.setProperty('--c-fg', t.fgColor);
+    document.documentElement.style.setProperty('--c-aqua', t.primaryColor);
+    document.body.style.background = t.bgColor;
+    document.body.style.color = t.fgColor;
+    // accent color overrides
+    document.querySelectorAll('.text-aqua').forEach(el => el.style.color = t.primaryColor);
+    document.querySelectorAll('.bg-aqua').forEach(el => el.style.background = t.primaryColor);
+    // fonts
+    document.querySelectorAll('.font-display, h1, h2').forEach(el => el.style.fontFamily = `'${t.displayFont}', sans-serif`);
+    document.body.style.fontFamily = `'${t.bodyFont}', system-ui, sans-serif`;
+    document.querySelectorAll('.font-script').forEach(el => el.style.fontFamily = `'${t.scriptFont}', cursive`);
+    // headline size
+    const h1 = document.querySelector('h1.word-split');
+    if (h1) h1.style.setProperty('font-size', t.headlineSize + 'px', 'important');
+    // marquee
+    const mq = document.querySelector('.marquee-section');
+    if (mq) mq.style.display = t.showMarquee ? '' : 'none';
+    // cursor
+    const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+    if (dot) dot.style.display = t.showCursor ? '' : 'none';
+    if (ring) ring.style.display = t.showCursor ? '' : 'none';
+    // motion
+    if (t.motionLevel === 'none') {
+      document.querySelectorAll('.reveal, .reveal-stagger, .word-split').forEach(el => el.classList.add('in'));
+    }
+  };
+  const state = { ...TWEAKS };
+  apply(state);
+
+  // Build panel
+  const panel = document.createElement('div');
+  panel.id = 'tweaksPanel';
+  panel.style.cssText = 'position:fixed;bottom:20px;right:20px;width:300px;z-index:100;background:rgba(10,31,43,0.95);backdrop-filter:blur(12px);border:1px solid rgba(124,245,216,0.3);border-radius:14px;padding:16px;font-family:Archivo,system-ui,sans-serif;color:#EAF4F2;font-size:12px;display:none;box-shadow:0 20px 60px rgba(0,0,0,0.5);';
+  panel.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div style="font-family:Anton,sans-serif;font-size:14px;letter-spacing:0.1em;text-transform:uppercase;">Tweaks</div>
+      <button id="tw-close" style="background:none;border:0;color:#EAF4F2;cursor:pointer;font-size:16px;line-height:1;">×</button>
+    </div>
+    <div style="display:grid;gap:10px;">
+      <label>Primary <input type="color" data-k="primaryColor" value="${state.primaryColor}" style="width:100%;height:28px;background:none;border:1px solid rgba(255,255,255,.1);border-radius:4px;"></label>
+      <label>Background <input type="color" data-k="bgColor" value="${state.bgColor}" style="width:100%;height:28px;background:none;border:1px solid rgba(255,255,255,.1);border-radius:4px;"></label>
+      <label>Foreground <input type="color" data-k="fgColor" value="${state.fgColor}" style="width:100%;height:28px;background:none;border:1px solid rgba(255,255,255,.1);border-radius:4px;"></label>
+      <label>Display font
+        <select data-k="displayFont" style="width:100%;padding:4px;background:rgba(255,255,255,.05);color:#EAF4F2;border:1px solid rgba(255,255,255,.1);border-radius:4px;">
+          ${['Anton','Archivo','Instrument Serif','Bebas Neue','Oswald'].map(f=>`<option ${f===state.displayFont?'selected':''}>${f}</option>`).join('')}
+        </select>
+      </label>
+      <label>Body font
+        <select data-k="bodyFont" style="width:100%;padding:4px;background:rgba(255,255,255,.05);color:#EAF4F2;border:1px solid rgba(255,255,255,.1);border-radius:4px;">
+          ${['Archivo','Inter','Helvetica','JetBrains Mono'].map(f=>`<option ${f===state.bodyFont?'selected':''}>${f}</option>`).join('')}
+        </select>
+      </label>
+      <label>Script font
+        <select data-k="scriptFont" style="width:100%;padding:4px;background:rgba(255,255,255,.05);color:#EAF4F2;border:1px solid rgba(255,255,255,.1);border-radius:4px;">
+          ${['Caveat','Instrument Serif','Dancing Script'].map(f=>`<option ${f===state.scriptFont?'selected':''}>${f}</option>`).join('')}
+        </select>
+      </label>
+      <label>Headline size: <span id="tw-hs">${state.headlineSize}</span>px
+        <input type="range" data-k="headlineSize" min="48" max="140" step="2" value="${state.headlineSize}" style="width:100%;">
+      </label>
+      <label>Motion
+        <select data-k="motionLevel" style="width:100%;padding:4px;background:rgba(255,255,255,.05);color:#EAF4F2;border:1px solid rgba(255,255,255,.1);border-radius:4px;">
+          ${['full','reduced','none'].map(m=>`<option ${m===state.motionLevel?'selected':''}>${m}</option>`).join('')}
+        </select>
+      </label>
+      <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" data-k="showMarquee" ${state.showMarquee?'checked':''}> Show marquee</label>
+      <label style="display:flex;gap:8px;align-items:center;"><input type="checkbox" data-k="showCursor" ${state.showCursor?'checked':''}> Custom cursor</label>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  panel.addEventListener('input', (e) => {
+    const el = e.target; const k = el.dataset.k; if (!k) return;
+    let v = el.type === 'checkbox' ? el.checked : (el.type === 'range' ? +el.value : el.value);
+    state[k] = v;
+    if (k === 'headlineSize') document.getElementById('tw-hs').textContent = v;
+    apply(state);
+    try { parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*'); } catch(_) {}
+  });
+  panel.querySelector('#tw-close').addEventListener('click', () => panel.style.display = 'none');
+
+  window.addEventListener('message', (e) => {
+    const d = e.data || {};
+    if (d.type === '__activate_edit_mode') panel.style.display = 'block';
+    if (d.type === '__deactivate_edit_mode') panel.style.display = 'none';
+  });
+  try { parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(_) {}
+})();
+</script>
+</body>
+</html>

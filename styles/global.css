@@ -1,0 +1,49 @@
+/* Base — fonts, body, selection. Tailwind utility classes come from the CDN
+   loaded in index.html; custom colors/fonts are declared in the inline
+   tailwind.config there (keeps this file framework-free). */
+
+:root {
+  --c-bg: #05131a;
+  --c-fg: #eaf4f2;
+  --c-aqua: #7cf5d8;
+}
+
+html,
+body {
+  background: var(--c-bg);
+  color: var(--c-fg);
+}
+
+body {
+  font-family: "Archivo", system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  letter-spacing: -0.005em;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
+.font-mono {
+  font-family:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
+}
+
+.font-serif-italic {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-style: italic;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.mix-exclusion {
+  mix-blend-mode: exclusion;
+}
+
+::selection {
+  background: #7cf5d8;
+  color: #05131a;
+}

@@ -2,9 +2,9 @@
   "name": "us-hydrations",
   "version": "0.1.0",
   "private": true,
-  "description": "US Hydrations — Pittston, PA hydration company landing page",
+  "description": "US Hydrations — Pittston, PA hydration company landing page (rebuild)",
   "scripts": {
-    "dev": "npx serve .",
-    "start": "npx serve ."
+    "dev": "npx --yes serve . -l 3000",
+    "start": "npx --yes serve . -l 3000"
   }
 }

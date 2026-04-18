@@ -1,44 +1,66 @@
 import { motion } from "motion/react";
 import { BlurText } from "../components/BlurText";
+import { SectionHeader } from "../components/SectionHeader";
+import { ParallaxLayer } from "../components/ParallaxLayer";
 import { story } from "../lib/content";
 import { useInView } from "../lib/hooks";
 
 const storyImage =
   "https://www.ushydrations.com/wp-content/uploads/2019/04/2-15-19-USH-Addl_DSC1720.jpg";
 
+const milestones: { year: string; label: string }[] = [
+  { year: "1996", label: "Founded as Nature's Way Purewater Systems — spring-water bottling route" },
+  { year: "2000", label: "Sandy Insalaco Sr. acquires majority ownership" },
+  { year: "2005", label: "Retooling for high-volume contract manufacturing" },
+  { year: "Today", label: "1,000,000 sq ft · 4 PET lines · 25+ years" },
+];
+
 export function Story() {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.2 });
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15 });
 
   return (
-    <section id="story" ref={ref} className="relative w-full overflow-hidden">
+    <section id="story" className="relative w-full overflow-hidden bg-ink">
+      {/* Fixed cinematic bg behind */}
       <div className="absolute inset-0 overflow-hidden">
+        <ParallaxLayer intensity={80} scale={1.15} className="absolute inset-0">
+          <div
+            className="img-cinematic"
+            style={{ backgroundImage: `url(${storyImage})` }}
+          />
+          <div className="img-tint" />
+          <div className="img-grain" />
+        </ParallaxLayer>
         <div
-          className="img-cinematic"
-          style={{ backgroundImage: `url(${storyImage})` }}
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(5,19,26,0.4) 0%, rgba(5,19,26,0.85) 100%)",
+          }}
         />
-        <div className="img-tint" />
-        <div className="img-grain" />
       </div>
 
       <span className="section-num">06 / Our Story</span>
 
-      <div className="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12 py-28 lg:py-40">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-7">
-            <h2
-              className="font-display uppercase text-cream leading-[0.95] mb-10"
-              style={{ fontSize: "clamp(36px, 5.5vw, 86px)" }}
-            >
-              <BlurText stagger={0.06}>{story.heading}</BlurText>
-            </h2>
-          </div>
+      <div className="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-16 py-28 lg:py-40">
+        <SectionHeader
+          digit="06"
+          label="Our Story"
+          eyebrow="From a route to a plant"
+          heading={<BlurText stagger={0.06}>{story.heading}</BlurText>}
+        />
 
-          <div className="lg:col-span-5 lg:col-start-8 flex flex-col gap-6">
+        {/* Narrative + milestones */}
+        <div ref={ref} className="mt-20 lg:mt-28 grid lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="lg:col-span-6 flex flex-col gap-8">
             {story.paragraphs.map((p, i) => (
               <motion.p
                 key={i}
-                className="font-mono uppercase text-cream/85"
-                style={{ fontSize: 13, lineHeight: 1.75, letterSpacing: "0.03em" }}
+                className="font-mono uppercase text-cream/85 max-w-[580px]"
+                style={{
+                  fontSize: 14,
+                  lineHeight: 1.75,
+                  letterSpacing: "0.03em",
+                }}
                 initial={{ filter: "blur(10px)", opacity: 0, y: 16 }}
                 animate={
                   inView
@@ -53,6 +75,39 @@ export function Story() {
               >
                 {p}
               </motion.p>
+            ))}
+          </div>
+
+          {/* Milestone timeline */}
+          <div className="lg:col-span-6 lg:col-start-7 flex flex-col gap-0">
+            {milestones.map((m, i) => (
+              <motion.div
+                key={m.year}
+                className="grid grid-cols-[100px_1fr] lg:grid-cols-[140px_1fr] gap-6 lg:gap-8 py-6 lg:py-8 border-t border-cream/10 first:border-t-0 items-baseline"
+                initial={{ opacity: 0, x: 30 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+                transition={{
+                  delay: 0.6 + i * 0.12,
+                  duration: 0.7,
+                  ease: [0.2, 0.8, 0.2, 1],
+                }}
+              >
+                <div
+                  className="font-display text-aqua leading-[1]"
+                  style={{
+                    fontSize: "clamp(30px, 3.2vw, 48px)",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {m.year}
+                </div>
+                <div
+                  className="font-mono uppercase text-cream/80"
+                  style={{ fontSize: 12, letterSpacing: "0.04em", lineHeight: 1.6 }}
+                >
+                  {m.label}
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>

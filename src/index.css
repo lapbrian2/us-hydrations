@@ -164,6 +164,18 @@ h3 {
 }
 
 /* ============================================================
+   SCROLL-LINKED PARALLAX — JS sets --parallax-y (-1 .. 1)
+   via IntersectionObserver + rAF. Multiplied by intensity
+   for 3D depth without heavy GPU cost.
+   ============================================================ */
+.parallax-layer {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--parallax-y, 0) * var(--parallax-intensity, 80px)), 0)
+    scale(var(--parallax-scale, 1.08));
+  transition: transform 0.1s linear;
+}
+
+/* ============================================================
    CINEMATIC IMAGE TREATMENT — desaturated + vignetted + tinted
    ============================================================ */
 .img-cinematic {
@@ -282,30 +294,49 @@ body.cursor-hover .cursor-ring {
 }
 
 /* ============================================================
-   SECTION NUMBER — editorial marker top-left of each section
+   SECTION NUMBER — oversized vertical rail (editorial).
+   Sits on the left gutter, rotated -90deg. Below md it becomes
+   a small top-left label so it doesn't crowd mobile layouts.
    ============================================================ */
 .section-num {
   position: absolute;
   top: 32px;
-  left: 32px;
+  left: 20px;
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: rgba(234, 244, 242, 0.4);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(234, 244, 242, 0.45);
   text-transform: uppercase;
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   z-index: 4;
 }
 .section-num::before {
   content: "";
-  width: 28px;
+  width: 22px;
   height: 1px;
   background: var(--color-aqua);
   transform-origin: left;
   animation: sn-draw 1s var(--ease-in-out-cubic) both;
 }
+
+@media (min-width: 1024px) {
+  .section-num {
+    top: 50%;
+    left: 28px;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left top;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    gap: 16px;
+    white-space: nowrap;
+  }
+  .section-num::before {
+    width: 56px;
+  }
+}
+
 @keyframes sn-draw {
   from {
     transform: scaleX(0);
@@ -313,6 +344,32 @@ body.cursor-hover .cursor-ring {
   to {
     transform: scaleX(1);
   }
+}
+
+/* Editorial title-block — oversized digit + label.
+   Use as a left-column header inside sections. */
+.section-title-block {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: clamp(16px, 2vw, 40px);
+}
+.section-title-digit {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 128px);
+  line-height: 0.8;
+  color: var(--color-aqua);
+  letter-spacing: -0.02em;
+}
+.section-title-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: rgba(234, 244, 242, 0.55);
+  text-transform: uppercase;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(234, 244, 242, 0.2);
+  padding-right: 32px;
 }
 
 /* ============================================================

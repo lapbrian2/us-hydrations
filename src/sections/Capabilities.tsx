@@ -1,111 +1,151 @@
 import { motion } from "motion/react";
 import { BlurText } from "../components/BlurText";
+import { SectionHeader } from "../components/SectionHeader";
+import { ParallaxLayer } from "../components/ParallaxLayer";
 import { capabilityGroups } from "../lib/content";
 import { useInView } from "../lib/hooks";
+import type { CapabilityGroup } from "../lib/content";
 
-const facilityImage =
-  "https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_2-5-19_USH_Additional_Location_DSC4875.jpg";
+interface RowProps {
+  group: CapabilityGroup;
+  index: number;
+}
+
+function CapabilityRow({ group, index }: RowProps) {
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.25 });
+  const isEven = index % 2 === 0;
+
+  return (
+    <div
+      ref={ref}
+      className={`grid lg:grid-cols-12 gap-8 lg:gap-16 items-center py-16 lg:py-24 ${
+        !isEven ? "lg:[direction:rtl]" : ""
+      }`}
+    >
+      {/* Image */}
+      <motion.div
+        className="lg:col-span-6 relative overflow-hidden rounded-[24px] lg:[direction:ltr]"
+        style={{ aspectRatio: "4 / 5" }}
+        initial={{ opacity: 0, x: isEven ? -60 : 60 }}
+        animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: isEven ? -60 : 60 }}
+        transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+      >
+        <ParallaxLayer intensity={40} scale={1.15} className="absolute inset-0">
+          <div
+            className="img-cinematic"
+            style={{ backgroundImage: `url(${group.image})` }}
+          />
+          <div className="img-tint" />
+          <div className="img-grain" />
+        </ParallaxLayer>
+
+        {/* Big number over image */}
+        <div
+          className="absolute top-6 left-6 font-display text-cream/95 z-[2] leading-[0.8]"
+          style={{ fontSize: "clamp(40px, 5vw, 80px)", letterSpacing: "-0.02em" }}
+        >
+          {group.num}
+        </div>
+        <div
+          className="absolute top-6 right-6 font-mono uppercase text-aqua z-[2]"
+          style={{ fontSize: 10, letterSpacing: "0.22em" }}
+        >
+          Capability / {group.num}
+        </div>
+      </motion.div>
+
+      {/* Copy */}
+      <div className="lg:col-span-6 lg:[direction:ltr] flex flex-col gap-8">
+        <h3
+          className="font-display uppercase text-cream leading-[0.95]"
+          style={{ fontSize: "clamp(40px, 5.8vw, 92px)" }}
+        >
+          <BlurText>{group.title}</BlurText>{" "}
+          {group.titleItalic && (
+            <span
+              className="font-serif-italic text-aqua inline-block"
+              style={{ textTransform: "none", letterSpacing: "-0.01em" }}
+            >
+              <BlurText delay={0.15}>{group.titleItalic}</BlurText>
+            </span>
+          )}
+        </h3>
+
+        <motion.p
+          className="font-mono uppercase text-cream/75 max-w-[480px]"
+          style={{ fontSize: 13, lineHeight: 1.7, letterSpacing: "0.04em" }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ delay: 0.35, duration: 0.7 }}
+        >
+          {group.copy}
+        </motion.p>
+
+        <motion.ul
+          className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 mt-2"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 0.55, duration: 0.5 }}
+        >
+          {group.bullets.map((b, i) => (
+            <motion.li
+              key={b}
+              className="font-mono text-cream/85 flex items-start gap-3 border-t border-cream/10 pt-3"
+              style={{ fontSize: 13, lineHeight: 1.5 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+              transition={{ delay: 0.6 + i * 0.05, duration: 0.5 }}
+            >
+              <span
+                className="font-mono text-aqua shrink-0"
+                style={{ fontSize: 10, paddingTop: 3 }}
+                aria-hidden
+              >
+                0{i + 1}
+              </span>
+              <span>{b}</span>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </div>
+    </div>
+  );
+}
 
 export function Capabilities() {
-  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.1 });
-
   return (
     <section
       id="capabilities"
-      ref={ref}
-      className="relative w-full overflow-hidden"
+      className="relative w-full bg-ink overflow-hidden"
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="img-cinematic"
-          style={{ backgroundImage: `url(${facilityImage})` }}
-        />
-        <div className="img-tint" />
-        <div className="img-grain" />
-      </div>
-
       <span className="section-num">02 / Capabilities</span>
 
-      <div className="relative z-10 max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-12 py-24 lg:py-32 flex flex-col gap-16">
-        {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
-          <div className="relative inline-block">
-            <h2
-              className="font-display uppercase text-cream leading-[1]"
-              style={{ fontSize: "clamp(32px, 5.5vw, 84px)" }}
-            >
+      <div className="relative max-w-[1831px] mx-auto px-5 sm:px-8 lg:px-16 py-24 lg:py-32">
+        <SectionHeader
+          digit="02"
+          label="Capabilities"
+          eyebrow="Water. Bottle. Test. Ship."
+          heading={
+            <>
               <BlurText>One plant. </BlurText>
               <span className="font-serif-italic text-aqua" style={{ textTransform: "none" }}>
-                <BlurText delay={0.2}>every</BlurText>
+                <BlurText delay={0.15}>every</BlurText>
               </span>{" "}
-              <BlurText delay={0.4}>format.</BlurText>
-            </h2>
-            <span
-              className="font-script text-aqua mix-exclusion absolute -rotate-2 pointer-events-none"
-              style={{
-                right: "-60px",
-                bottom: "-24px",
-                fontSize: "clamp(32px, 4.4vw, 64px)",
-                lineHeight: 1,
-              }}
-            >
-              Pittston
-            </span>
-          </div>
+              <BlurText delay={0.3}>format.</BlurText>
+            </>
+          }
+          support={
+            <>
+              1,000,000 sq ft off I-81. PET still through alkaline —
+              purified, filled, packed, palletized under one roof.
+            </>
+          }
+        />
 
-          <p
-            className="font-mono uppercase text-cream max-w-[360px]"
-            style={{ fontSize: 14, lineHeight: 1.7, letterSpacing: "0.04em" }}
-          >
-            A 1,000,000 sq ft plant off I-81. PET, still to sparkling, purified
-            through alkaline — purified, filled, packed, and palletized under
-            one roof.
-          </p>
-        </div>
-
-        {/* Capability grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
-          {capabilityGroups.map((c, i) => (
-            <motion.div
-              key={c.num}
-              className="bg-ink/70 backdrop-blur-sm p-6 lg:p-8"
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{
-                delay: 0.3 + i * 0.1,
-                duration: 0.7,
-                ease: [0.2, 0.8, 0.2, 1],
-              }}
-            >
-              <div
-                className="font-display text-aqua"
-                style={{ fontSize: 14, letterSpacing: "0.14em" }}
-              >
-                {c.num}
-              </div>
-              <div
-                className="mt-4 font-display uppercase text-cream"
-                style={{ fontSize: "clamp(22px, 2vw, 30px)", lineHeight: 1.1 }}
-              >
-                {c.title}
-              </div>
-              <p
-                className="mt-3 font-mono uppercase text-cream/60"
-                style={{ fontSize: 11, lineHeight: 1.6, letterSpacing: "0.08em" }}
-              >
-                {c.copy}
-              </p>
-              <ul className="mt-5 space-y-1.5 font-mono text-cream/80" style={{ fontSize: 12 }}>
-                {c.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <span className="text-aqua mt-1.5" style={{ fontSize: 8 }} aria-hidden>
-                      ▸
-                    </span>
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+        {/* Chess rows */}
+        <div className="mt-20 lg:mt-28 divide-y divide-cream/5">
+          {capabilityGroups.map((g, i) => (
+            <CapabilityRow key={g.num} group={g} index={i} />
           ))}
         </div>
       </div>

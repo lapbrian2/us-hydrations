@@ -88,13 +88,17 @@ export const marqueeTerms = [
 export type CapabilityGroup = {
   num: string;
   title: string;
+  /** Italic tail fragment used with display title (e.g. "Water — processed.") */
+  titleItalic?: string;
   copy: string;
   bullets: string[];
+  image: string;
 };
 export const capabilityGroups: CapabilityGroup[] = [
   {
     num: "01",
-    title: "Water Processing",
+    title: "Water",
+    titleItalic: "processed.",
     copy: "Six-stage purification, treatment, and batching under one roof.",
     bullets: [
       "Reverse Osmosis",
@@ -104,22 +108,28 @@ export const capabilityGroups: CapabilityGroup[] = [
       "Advanced Batching",
       "Automated CIP",
     ],
+    image:
+      "https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_2-5-19_USH_Additional_Location_DSC4875.jpg",
   },
   {
     num: "02",
-    title: "Bottling & Packaging",
+    title: "Bottled",
+    titleItalic: "at speed.",
     copy: "Four high-speed blow & fill PET lines with full package flexibility.",
     bullets: [
-      "10oz \u2014 1.5L bottles",
+      "10oz — 1.5L bottles",
       "28 / 38 mm closures",
       "Aptar Sports Cap & Overcap",
       "6, 12, 15, 18, 24 pack configurations",
       "Shrink-tray & boxes",
     ],
+    image:
+      "https://www.ushydrations.com/wp-content/uploads/2019/04/2-15-19-USH-Addl_DSC1720.jpg",
   },
   {
     num: "03",
-    title: "Quality & Lab",
+    title: "Tested",
+    titleItalic: "every batch.",
     copy: "Onsite micro and product testing. Every batch verified before it ships.",
     bullets: [
       "In-house testing laboratory",
@@ -127,10 +137,13 @@ export const capabilityGroups: CapabilityGroup[] = [
       "Quality-focused management team",
       "Continuous improvement culture",
     ],
+    image:
+      "https://www.ushydrations.com/wp-content/uploads/2019/05/HALF_1-23-19_USH_Session_DSC0383.jpg",
   },
   {
     num: "04",
-    title: "Warehouse & Logistics",
+    title: "Shipped",
+    titleItalic: "from Pittston.",
     copy: "1,000,000 sq ft of production and warehouse. 50 bays so trucks load quickly.",
     bullets: [
       "1 production facility + 3 distribution centers",
@@ -139,6 +152,8 @@ export const capabilityGroups: CapabilityGroup[] = [
       "I-81 & I-80 direct access",
       "2 mi from AVP airport",
     ],
+    image:
+      "https://www.ushydrations.com/wp-content/uploads/2019/04/2-15-19-USH-Addl_DSC1676.jpg",
   },
 ];
 
